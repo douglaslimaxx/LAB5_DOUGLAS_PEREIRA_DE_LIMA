@@ -52,4 +52,8 @@ public class SistemaDeApostasFacade {
 		return this.sistema.retornaCaixaVencedores(cenario);
 	}
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> fe463f70d89eaa4421ade1f5ab4abb124a41aace
