@@ -25,6 +25,6 @@ public class Aposta {
 	}
 	
 	public String toString() {
-		return (this.apostador + " - R$" + this.quantia + " - " + this.previsao);
+		return (this.apostador + " - R$" + (this.quantia/100.0) + " - " + this.previsao);
 	}
 }

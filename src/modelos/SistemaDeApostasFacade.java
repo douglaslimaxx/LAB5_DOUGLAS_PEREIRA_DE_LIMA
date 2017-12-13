@@ -44,11 +44,11 @@ public class SistemaDeApostasFacade {
 		this.sistema.encerrarCenario(cenario, ocorreu);
 	}
 	
-	public int retornarCaixaPerdedores(int cenario) {
-		return this.sistema.retornaCaixaPerdedores(cenario);
+	public int getCaixaCenario(int cenario) {
+		return this.sistema.cenarioParaCaixa(cenario);
 	}
 	
-	public int retornaCaixaVencedores(int cenario) {
-		return this.sistema.retornaCaixaVencedores(cenario);
+	public int getTotalRateioCenario(int cenario) {
+		return this.sistema.retornaRateio(cenario);
 	}
 }

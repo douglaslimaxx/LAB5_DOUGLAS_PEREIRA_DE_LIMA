@@ -8,8 +8,9 @@ public class Cenario {
 	private String ocorreu;
 	private String finalizado;
 	private ArrayList<Aposta> apostas;
-	private int caixaVencedores;
+	private int rateio;
 	private int caixaPerdedores;
+	private int destinadoAoCaixa;
 	private int numeracao;
 	private int caixaTotal;
 
@@ -18,11 +19,8 @@ public class Cenario {
 		this.numeracao = numeracao;
 		this.ocorreu = "";
 		this.apostas = new ArrayList<>();
-		this.caixaPerdedores = 0;
-		this.caixaVencedores = 0;
 		this.finalizado = "Não Finalizado";
 	}
-
 	public void adicionaAposta(String apostador, int quantia, String previsao) {
 		Aposta aposta = new Aposta(apostador, quantia, previsao);
 		this.apostas.add(aposta);
@@ -54,7 +52,7 @@ public class Cenario {
 	public void definirRateio(String previsao) {
 		for (Aposta a: apostas) {
 			if (a.getPrevisao().equals(previsao)) {
-				this.caixaVencedores += a.getQuantia();
+				
 			} else {
 				this.caixaPerdedores += a.getQuantia();
 			}
@@ -73,9 +71,9 @@ public class Cenario {
 		return apostas;
 	}
 
-	public int getCaixaVencedores() {
-		return this.caixaVencedores;
-	}
+	public int getRateio() {
+		return this.rateio;
+	} 
 
 	public int getCaixaPerdedores() {
 		return this.caixaPerdedores;
@@ -87,6 +85,21 @@ public class Cenario {
 	
 	public int getCaixaTotal() {
 		return this.caixaTotal;
+	}
+	
+	public void setCaixaPerdedores(int valor) {
+		this.caixaPerdedores = valor;
+	}
+	
+	public void setRateio(int valor) {
+		this.rateio = valor;
+	}
+	
+	public int getDestinadoAoCaixa() {
+		return destinadoAoCaixa;
+	}
+	public void setDestinadoAoCaixa(int destinadoAoCaixa) {
+		this.destinadoAoCaixa = destinadoAoCaixa;
 	}
 	
 	public String toString() {

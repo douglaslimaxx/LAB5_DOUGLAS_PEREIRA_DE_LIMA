@@ -7,20 +7,17 @@ public class Sistema {
 	private int caixa;
 	private double taxa;
 	private ArrayList<Cenario> cenarios;
-	private int numeracaoCenario;
 	
 	public Sistema(int caixa, double taxa) {
 		this.caixa = caixa;
 		this.taxa = taxa;
 		this.cenarios = new ArrayList<>();
-		this.numeracaoCenario = 0;
 	}
 
 	public int cadastraCenario(String descricao) {
-		this.numeracaoCenario++;
-		Cenario cenario = new Cenario(descricao, this.numeracaoCenario);
+		Cenario cenario = new Cenario(descricao, (this.cenarios.size() + 1));
 		this.cenarios.add(cenario);
-		return this.numeracaoCenario; 
+		return this.cenarios.size();
 	}
 	
 	public String exibirUmCenario(int numeracao) {
@@ -50,45 +47,36 @@ public class Sistema {
 	public String exibirApostasDeUmCenario(int cenario) {
 		return this.cenarios.get(cenario).exibirTodasApostas();
 	}
-	
-	
-	
+		
 	public void encerrarCenario(int cenario, boolean ocorreu) {
 		if (ocorreu == true) {
 			this.cenarios.get(cenario).setFinalizado("ocorreu");
 		} else {
 			this.cenarios.get(cenario).setFinalizado("n ocorreu");
 		}
+		this.adicionaDinheiroEmCaixa(cenario);
+		this.cenarios.get(cenario).setRateio(this.cenarioParaCaixa(cenario));
 	}
 	
-	public int retornaCaixaVencedores(int cenario) {
-		return this.cenarios.get(cenario).getCaixaVencedores();
+	public int retornaRateio(int cenario) {
+		return this.cenarios.get(cenario).getRateio();
 	}
 	
-	public int retornaCaixaPerdedores(int cenario) {
-		return this.cenarios.get(cenario).getCaixaPerdedores();
+	private void adicionaDinheiroEmCaixa(int cenario) {
+		this.caixa += this.cenarioParaCaixa(cenario);
+		this.cenarios.get(cenario).setCaixaPerdedores(this.cenarioParaCaixa(cenario));
+		this.cenarios.get(cenario).setDestinadoAoCaixa(this.cenarioParaCaixa(cenario));
 	}
 	
-	
-	
+	public int cenarioParaCaixa(int cenario) {
+		return (int)(this.cenarios.get(cenario).getCaixaPerdedores() * this.taxa);
+	}
 	public int getCaixa() {
 		return caixa;
-	}
-
-	public void setCaixa(int caixa) {
-		this.caixa = caixa;
-	}
-
-	public double getTaxa() {
-		return taxa;
 	}
 	
 	public ArrayList<Cenario> getCenarios() {
 		return cenarios;
-	}
-
-	public int getNumeracaoCenario() {
-		return numeracaoCenario;
 	}
 	
 }
