@@ -2,6 +2,18 @@ package modelos;
 
 import java.util.ArrayList;
 
+/**
+ * Representa um cenário com descrição, uma lista de objetos do tipo 
+ * Aposta, Strings que representam se o cenário foi finalizado e se 
+ * ele ocorreu ou não. Além disso um cenário terá inteiros que
+ * representam o caixa total de apostas, o valor total da soma das
+ * apostas perdedoras, o valor que será destinado ao caixa do sistema
+ * o valor que será distribuído aos vencedores que é o rateio e a
+ * numeração desse cenário. Um cenário também pode adicionar apostas,
+ * ser finalizado, exibir todas as suas apostas, definir o rateio.  
+ * @author douglas
+ *
+ */
 public class Cenario {
 
 	private String nome;
@@ -27,20 +39,6 @@ public class Cenario {
 		this.caixaTotal += quantia;
 	}
 	
-	public void setFinalizado(String ocorreu) {
-		if (this.finalizado == "Finalizado") {
-			
-		} else {
-			this.finalizado = "Finalizado";
-			this.ocorreu = ocorreu;
-			if (ocorreu.equals("ocorreu")) {
-				this.definirRateio("VAI ACONTECER");
-			} else {
-				this.definirRateio("N VAI ACONTECER");
-			}
-		}
-	}
-
 	public String exibirTodasApostas() {
 		String saida = "";
 		for (int i = 0; i<this.apostas.size(); i++) {
@@ -59,12 +57,30 @@ public class Cenario {
 		}
 	}
 	
-	public String getNome() {
-		return nome;
+	public void setFinalizado(String ocorreu) {
+		if (this.finalizado == "Finalizado") {
+			
+		} else {
+			this.finalizado = "Finalizado";
+			this.ocorreu = ocorreu;
+			if (ocorreu.equals("ocorreu")) {
+				this.definirRateio("VAI ACONTECER");
+			} else {
+				this.definirRateio("N VAI ACONTECER");
+			}
+		}
 	}
-
-	public String getOcorreu() {
-		return ocorreu;
+	
+	public void setCaixaPerdedores(int valor) {
+		this.caixaPerdedores = valor;
+	}
+	
+	public void setRateio(int valor) {
+		this.rateio = valor;
+	}
+	
+	public void setDestinadoAoCaixa(int destinadoAoCaixa) {
+		this.destinadoAoCaixa = destinadoAoCaixa;
 	}
 
 	public ArrayList<Aposta> getApostas() {
@@ -78,28 +94,9 @@ public class Cenario {
 	public int getCaixaPerdedores() {
 		return this.caixaPerdedores;
 	}
-
-	public String getFinalizado() {
-		return finalizado;
-	}
 	
 	public int getCaixaTotal() {
 		return this.caixaTotal;
-	}
-	
-	public void setCaixaPerdedores(int valor) {
-		this.caixaPerdedores = valor;
-	}
-	
-	public void setRateio(int valor) {
-		this.rateio = valor;
-	}
-	
-	public int getDestinadoAoCaixa() {
-		return destinadoAoCaixa;
-	}
-	public void setDestinadoAoCaixa(int destinadoAoCaixa) {
-		this.destinadoAoCaixa = destinadoAoCaixa;
 	}
 	
 	public String toString() {
