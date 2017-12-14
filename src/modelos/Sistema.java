@@ -55,7 +55,8 @@ public class Sistema {
 			this.cenarios.get(cenario).setFinalizado("n ocorreu");
 		}
 		this.adicionaDinheiroEmCaixa(cenario);
-		this.cenarios.get(cenario).setRateio(this.cenarioParaCaixa(cenario));
+		this.cenarios.get(cenario).setRateio(this.cenarios.get(cenario).getCaixaPerdedores() - 
+				this.cenarioParaCaixa(cenario));
 	}
 	
 	public int retornaRateio(int cenario) {
@@ -64,7 +65,6 @@ public class Sistema {
 	
 	private void adicionaDinheiroEmCaixa(int cenario) {
 		this.caixa += this.cenarioParaCaixa(cenario);
-		this.cenarios.get(cenario).setCaixaPerdedores(this.cenarioParaCaixa(cenario));
 		this.cenarios.get(cenario).setDestinadoAoCaixa(this.cenarioParaCaixa(cenario));
 	}
 	
