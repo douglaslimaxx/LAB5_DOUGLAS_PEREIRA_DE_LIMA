@@ -51,6 +51,9 @@ public class Aposta {
 	
 	/**
 	 * Método retorna uma representação textual de uma aposta.
+	 * A representação está da seguinte forma: (Nome do apostador) - 
+	 * R$ (a quantia em centavos convertida para reais) - (previsão
+	 * da aposta).
 	 * @return String que é auma representação textual da aposta.
 	 */
 	public String toString() {

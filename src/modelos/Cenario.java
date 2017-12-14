@@ -148,7 +148,11 @@ public class Cenario {
 	}
 
 	/**
-	 * Método que retorna uma representação 
+	 * Método que retorna uma representação textual do cenário.
+	 * A representação está seguinta forma: (Numeração do cenário) - 
+	 * (descrição do cenário) - (situação se foi finalizado ou não) -
+	 * (e se o cenário foi finalizado, a situação se ele ocorreu ou não).
+	 * @return String que é a representação textual de Cenário.
 	 */
 	public String toString() {
 		return (this.numeracao + " - " + this.nome + " - " + this.finalizado + "(" + this.ocorreu + ")");
