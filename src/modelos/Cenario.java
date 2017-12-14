@@ -7,10 +7,10 @@ import java.util.ArrayList;
  * Aposta, Strings que representam se o cenário foi finalizado e se 
  * ele ocorreu ou não. Além disso um cenário terá inteiros que
  * representam o caixa total de apostas, o valor total da soma das
- * apostas perdedoras, o valor que será destinado ao caixa do sistema
- * o valor que será distribuído aos vencedores que é o rateio e a
- * numeração desse cenário. Um cenário também pode adicionar apostas,
- * ser finalizado, exibir todas as suas apostas, definir o rateio.  
+ * apostas perdedoras, o valor que será distribuído aos vencedores que
+ * é o rateio e a numeração desse cenário. Um cenário também pode 
+ * adicionar apostas, ser finalizado, exibir todas as suas apostas,
+ *  definir o rateio.  
  * @author douglas
  *
  */
@@ -22,7 +22,6 @@ public class Cenario {
 	private ArrayList<Aposta> apostas;
 	private int rateio;
 	private int caixaPerdedores;
-	private int destinadoAoCaixa;
 	private int numeracao;
 	private int caixaTotal;
 
@@ -85,6 +84,12 @@ public class Cenario {
 		}
 	}
 	
+	/**
+	 * Método finaliza o cenário, mudando o atributo finalizado, somente
+	 * se ele já não foi finalizado. E após finalizado ele determina também
+	 * se o cenário ocorreu ou não a partir do parâmetro previsao.
+	 * @param ocorreu String que afirma se o cenário ocorreu ou não.
+	 */
 	public void setFinalizado(String ocorreu) {
 		if (this.finalizado == "Finalizado") {
 			
@@ -99,37 +104,53 @@ public class Cenario {
 		}
 	}
 	
+	/**
+	 * Método que muda o valor do atributo Rateio.
+	 * @param valor inteiro que será o valor atribuído ao rateio.
+	 */
 	public void setRateio(int valor) {
 		this.rateio = valor;
 	}
 	
-	public void setDestinadoAoCaixa(int destinadoAoCaixa) {
-		this.destinadoAoCaixa = destinadoAoCaixa;
-	}
-
+	/**
+	 * Método que retorna a lista de objetos do tipo Aposta que são 
+	 * armazenados em Cenário. 
+	 * @return Um ArrayList de objetos do tipo Aposta.
+	 */
 	public ArrayList<Aposta> getApostas() {
 		return apostas;
 	}
 
+	/**
+	 * Método que retorna o valor do rateio que será destinado aos vencedores.
+	 * @return um inteiro que é o valor do rateio.
+	 */
 	public int getRateio() {
 		return this.rateio;
 	} 
 
+	/**
+	 * Método que retorna o caixa do perdedoras que é a soma da quantia
+	 * de todas as apostas perdedoras.
+	 * @return Um inteiro que é o valor do caixa do Perdedores.
+	 */
 	public int getCaixaPerdedores() {
 		return this.caixaPerdedores;
 	}
 	
+	/**
+	 * Método retorna o caixa total que é a soma da quantia de todas
+	 * as apostas.
+	 * @return Um inteiro que é o valor do caixa total.
+	 */
 	public int getCaixaTotal() {
 		return this.caixaTotal;
 	}
-	
-	public int getDestinadoAoCaixa() {
-		return destinadoAoCaixa;
-	}
 
+	/**
+	 * Método que retorna uma representação 
+	 */
 	public String toString() {
 		return (this.numeracao + " - " + this.nome + " - " + this.finalizado + "(" + this.ocorreu + ")");
 	}
-	
-	
 }

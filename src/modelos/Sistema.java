@@ -65,7 +65,6 @@ public class Sistema {
 	
 	private void adicionaDinheiroEmCaixa(int cenario) {
 		this.caixa += this.cenarioParaCaixa(cenario);
-		this.cenarios.get(cenario).setDestinadoAoCaixa(this.cenarioParaCaixa(cenario));
 	}
 	
 	public int cenarioParaCaixa(int cenario) {
