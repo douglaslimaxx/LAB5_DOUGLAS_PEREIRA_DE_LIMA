@@ -20,6 +20,9 @@ public class Aposta {
 	 * @param previsao String que é previsão do cenário.
 	 */
 	public Aposta(String apostador, int quantia, String previsao) {
+		if (apostador.equals(null)) {
+			throw new NullPointerException("Nome do apostador nulo");
+		}
 		this.apostador = apostador;
 		this.quantia = quantia;
 		this.previsao = previsao;
