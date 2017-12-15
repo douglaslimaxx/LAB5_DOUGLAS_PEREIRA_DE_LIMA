@@ -14,6 +14,9 @@ public class SistemaDeApostasFacade {
 		return this.sistema.getCaixa();
 	}
 	
+	/**
+	 * @see Sistema#cadastraCenario(String)
+	 */
 	public int cadastraCenario(String descricao) {
 		return this.sistema.cadastraCenario(descricao);
 	}

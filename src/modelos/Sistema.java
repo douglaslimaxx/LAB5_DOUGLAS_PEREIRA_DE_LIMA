@@ -109,10 +109,28 @@ public class Sistema {
 		return this.cenarios.get(cenario).getApostas().size();
 	}
 	
+	/**
+	 * Método que retorna a representação textual de todas as apostas
+	 * feitas em um cenário. 
+	 * @param cenario int que é a numeração de qual cenário será exibido.
+	 * @return String com as representações textuais de todas as apostas
+	 * de um cenário.
+	 */
 	public String exibirApostasDeUmCenario(int cenario) {
 		return this.cenarios.get(cenario).exibirTodasApostas();
 	}
-		
+	
+	/**
+	 * Método encerra um cenário. Mudando o atributo de cenário que
+	 * contém a informação se ele foi finalizado ou não. E faz outras
+	 * ações que estão relacionadas ao encerramento de um cenário: 
+	 * adiciona o valor destinado ao caixa do sistema e atribui  o
+	 * valor de rateio que será distribuído aos vencedores das apostas
+	 * que foram feitas nesse cenário finalizado.
+	 * @param cenario int que é a numeração de qual cenário será finalizado.
+	 * @param ocorreu boolean que determina se o cenário ocorreu com o valor
+	 * true e se o cenário não ocorreu com o valor false.
+	 */
 	public void encerrarCenario(int cenario, boolean ocorreu) {
 		if (ocorreu == true) {
 			this.cenarios.get(cenario).setFinalizado("ocorreu");
@@ -124,23 +142,43 @@ public class Sistema {
 				this.cenarioParaCaixa(cenario));
 	}
 	
+	/**
+	 * Método retorna o valor derateio de um cenário, que será destinado
+	 * aos vencedores.
+	 * @param cenario int que é a numeração de qual cenário retornará
+	 * o valor de rateio
+	 * @return int que é o valor de rateio do cenário.
+	 */
 	public int retornaRateio(int cenario) {
 		return this.cenarios.get(cenario).getRateio();
 	}
 	
+	/**
+	 * Método que adicionado o valor destinado ao caixa.
+	 * @param cenario int que é a numeração do cenário o qual será pego
+	 * o valor a ser adicionado no caixa do sistema.
+	 */
 	private void adicionaDinheiroEmCaixa(int cenario) {
 		this.caixa += this.cenarioParaCaixa(cenario);
 	}
 	
+	/**
+	 * Método calcula e retorna o valor do caixa de um cenário que será
+	 * destinado ao caixa do sitema.
+	 * @param cenario int que é a numeração do cenário o qual será pego
+	 * o valor a ser calculado.
+	 * @return int que é o valor calculado a ser destinado ao caixa do 
+	 * sistema.
+	 */
 	public int cenarioParaCaixa(int cenario) {
 		return (int)(this.cenarios.get(cenario).getCaixaPerdedores() * this.taxa);
 	}
+	
+	/**
+	 * Método retorna o valor do caixa do sistema até aquele momento.
+	 * @return int que é o valor do caixa do sistema até o momento.
+	 */
 	public int getCaixa() {
 		return caixa;
 	}
-	
-	public ArrayList<Cenario> getCenarios() {
-		return cenarios;
-	}
-	
 }
