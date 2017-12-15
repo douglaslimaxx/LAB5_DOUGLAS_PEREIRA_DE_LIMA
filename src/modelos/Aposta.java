@@ -1,5 +1,7 @@
 package modelos;
 
+import java.util.NoSuchElementException;
+
 /**
  * Representa um aposta que irá ter o nome de quem apostou, a quantia
  * apostada e a previsão do cenário onde a aposta está sendo feita
@@ -33,11 +35,11 @@ public class Aposta {
 					+ " Apostador nao pode ser vazio ou nulo");
 		}
 		if (quantia == 0) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: "
+			throw new NoSuchElementException("Erro no cadastro de aposta: "
 					+ "Valor nao pode ser menor ou igual a zero");
 		}
 		if (quantia < 0) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: "
+			throw new NoSuchElementException("Erro no cadastro de aposta: "
 					+ "Valor nao pode ser menor ou igual a zero");
 		}
 		if ((!previsao.equals("VAI ACONTECER")) || (!previsao.equals("N VAI ACONTECER"))){
