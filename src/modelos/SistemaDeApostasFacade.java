@@ -1,5 +1,7 @@
 package modelos;
 
+import easyaccept.EasyAccept;
+
 public class SistemaDeApostasFacade {
 
 	private Sistema sistema;
@@ -50,5 +52,10 @@ public class SistemaDeApostasFacade {
 	
 	public int getTotalRateioCenario(int cenario) {
 		return this.sistema.retornaRateio(cenario);
+	}
+	
+	public static void main(String[] args) {
+		args = new String[] ("SistemaDeApostasFacade", "acceptance_test/us1_test.txt");
+		EasyAccept.main(args);
 	}
 }
