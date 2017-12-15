@@ -55,7 +55,7 @@ public class SistemaDeApostasFacade {
 	}
 	
 	public static void main(String[] args) {
-		args = new String[] {"SistemaDeApostasFacade.java", "acceptance_test/us1_test.txt"};
+		args = new String[] {"modelos.SistemaDeApostasFacade", "acceptance_test/us1_test.txt"};
 		EasyAccept.main(args);
 	}
 }
