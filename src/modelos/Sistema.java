@@ -115,6 +115,12 @@ public class Sistema {
 	 * @return int que é o valor total das apostas de um cenário.
 	 */
 	public int valorTotalDeApostas(int cenario) {
+		if (cenario <= 0) {
+			throw new NoSuchElementException("Erro na consulta do valor total de apostas: Cenario invalido");
+		}
+		if (cenario > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro na consulta do valor total de apostas: Cenario nao cadastrado");
+		}
 		return this.cenarios.get(cenario).getCaixaTotal();
 	}
 	
@@ -125,6 +131,12 @@ public class Sistema {
 	 * @return int que o número de apostas feitas no cenário.
 	 */
 	public int totalDeApostas(int cenario) {
+		if (cenario <= 0) {
+			throw new NoSuchElementException("Erro na consulta do total de apostas: Cenario invalido");
+		}
+		if (cenario > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro na consulta do total de apostas: Cenario nao cadastrado");
+		}
 		return this.cenarios.get(cenario).getApostas().size();
 	}
 	
