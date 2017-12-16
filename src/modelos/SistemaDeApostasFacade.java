@@ -4,37 +4,41 @@ import easyaccept.EasyAccept;
 
 /**
  * Representa uma Facade que controla o controller Sistema.
+ * 
  * @author Douglas Lima
  *
  */
 public class SistemaDeApostasFacade {
 
 	private Sistema sistema;
-	
+
 	/**
-	 * Método que inicializa um sistema a partir de um valor do caixa
-	 * inicial e um valor de taxa.
-	 * @param caixa int que é o valor do caixa inicial do sistema
-	 * @param taxa double que é a taxa utilizada pelo sistema.
+	 * Método que inicializa um sistema a partir de um valor do caixa inicial e um
+	 * valor de taxa.
+	 * 
+	 * @param caixa
+	 *            int que é o valor do caixa inicial do sistema
+	 * @param taxa
+	 *            double que é a taxa utilizada pelo sistema.
 	 */
 	public SistemaDeApostasFacade(int caixa, double taxa) {
 		this.sistema = new Sistema(caixa, taxa);
 	}
-	
+
 	/**
 	 * @see Sistema#getCaixa()
 	 */
 	public int recuperaValorCaixa() {
 		return this.sistema.getCaixa();
 	}
-	
+
 	/**
 	 * @see Sistema#cadastraCenario(String)
 	 */
 	public int cadastraCenario(String descricao) {
 		return this.sistema.cadastraCenario(descricao);
 	}
-	
+
 	/**
 	 * @see Sistema#exibeUmCenario(int)
 	 */
@@ -76,7 +80,7 @@ public class SistemaDeApostasFacade {
 	public String exibeApostas(int cenario) {
 		return this.sistema.exibeApostasDeUmCenario(cenario);
 	}
-	
+
 	/**
 	 * @see Sistema#encerraCenario(int, boolean)
 	 */
@@ -85,10 +89,10 @@ public class SistemaDeApostasFacade {
 	}
 
 	/**
-	 * @see Sistema#cenarioParaCaixa(int)
+	 * @see Sistema#calculaValorDeCenarioParaCaixa(int)
 	 */
 	public int getCaixaCenario(int cenario) {
-		return this.sistema.cenarioParaCaixa(cenario);
+		return this.sistema.calculaValorDeCenarioParaCaixa(cenario);
 	}
 
 	/**
@@ -97,10 +101,10 @@ public class SistemaDeApostasFacade {
 	public int getTotalRateioCenario(int cenario) {
 		return this.sistema.retornaRateio(cenario);
 	}
-	
+
 	public static void main(String[] args) {
-		args = new String[] {"modelos.SistemaDeApostasFacade", "acceptance_test/us1_test.txt",
-				"acceptance_test/us2_test.txt", "acceptance_test/us3_test.txt", "acceptance_test/us1_test.txt"};
+		args = new String[] { "modelos.SistemaDeApostasFacade", "acceptance_test/us1_test.txt",
+				"acceptance_test/us2_test.txt", "acceptance_test/us3_test.txt", "acceptance_test/us1_test.txt" };
 		EasyAccept.main(args);
 	}
 }
