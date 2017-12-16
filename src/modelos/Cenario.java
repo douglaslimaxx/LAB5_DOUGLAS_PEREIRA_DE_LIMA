@@ -32,6 +32,12 @@ public class Cenario {
 	 * @param numeracao int que é a numeração do cenário.
 	 */
 	public Cenario(String nome, int numeracao) {
+		if (nome.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
+		}
+		if (nome.equals(null)) {
+			throw new NullPointerException("Erro no cadastro de cenario: Descricao nao pode ser nula");
+		}
 		this.nome = nome;
 		this.numeracao = numeracao;
 		this.ocorreu = "";

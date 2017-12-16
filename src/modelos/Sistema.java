@@ -63,8 +63,14 @@ public class Sistema {
 	 * @param numeracao int que é a numeração de qual cenário será exibido.
 	 * @return String que é a representaçaõ do cenário.
 	 */
-	public String exibirUmCenario(int numeracao) {
-		return this.cenarios.get(numeracao).toString();
+	public String exibirUmCenario(int cenario) {
+		if (cenario <= 0) {
+			throw new NoSuchElementException("Erro no consulta de cenario: Cenario invalido");
+		}
+		if (cenario > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro no consulta de cenario: Cenario nao cadastrado");
+		}
+		return this.cenarios.get(cenario).toString();
 	}
 	
 	/**
