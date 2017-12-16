@@ -67,7 +67,7 @@ public class Cenario {
 	 * @return String que é uma representação textual de todas as apostas
 	 * feitas no cenário.
 	 */
-	public String exibirTodasApostas() {
+	public String exibeTodasApostas() {
 		String saida = "";
 		for (int i = 0; i<this.apostas.size(); i++) {
 			saida += (this.apostas.get(i) + System.lineSeparator());
@@ -80,7 +80,7 @@ public class Cenario {
 	 * apostada à caixa dos perdedores.
 	 * @param previsao String que é a previsão de quem ganha.
 	 */
-	public void definirCaixaPerdedores(String previsao) {
+	private void defineCaixaPerdedores(String previsao) {
 		for (Aposta a: apostas) {
 			if (a.getPrevisao().equals(previsao)) {
 				
@@ -100,9 +100,9 @@ public class Cenario {
 		this.finalizado = "Finalizado";
 		this.ocorreu = ocorreu;
 		if (ocorreu.equals("ocorreu")) {
-			this.definirCaixaPerdedores("VAI ACONTECER");
+			this.defineCaixaPerdedores("VAI ACONTECER");
 		} else {
-			this.definirCaixaPerdedores("N VAI ACONTECER");
+			this.defineCaixaPerdedores("N VAI ACONTECER");
 		}
 	}
 	

@@ -63,7 +63,7 @@ public class Sistema {
 	 * @param numeracao int que é a numeração de qual cenário será exibido.
 	 * @return String que é a representaçaõ do cenário.
 	 */
-	public String exibirUmCenario(int cenario) {
+	public String exibeUmCenario(int cenario) {
 		if (cenario <= 0) {
 			throw new NoSuchElementException("Erro no consulta de cenario: Cenario invalido");
 		}
@@ -147,8 +147,8 @@ public class Sistema {
 	 * @return String com as representações textuais de todas as apostas
 	 * de um cenário.
 	 */
-	public String exibirApostasDeUmCenario(int cenario) {
-		return this.cenarios.get(cenario).exibirTodasApostas();
+	public String exibeApostasDeUmCenario(int cenario) {
+		return this.cenarios.get(cenario).exibeTodasApostas();
 	}
 	
 	/**
@@ -162,7 +162,7 @@ public class Sistema {
 	 * @param ocorreu boolean que determina se o cenário ocorreu com o valor
 	 * true e se o cenário não ocorreu com o valor false.
 	 */
-	public void encerrarCenario(int cenario, boolean ocorreu) {
+	public void encerraCenario(int cenario, boolean ocorreu) {
 		if (cenario <= 0) {
 			throw new NoSuchElementException("Erro ao fechar aposta: Cenario invalido");
 		}

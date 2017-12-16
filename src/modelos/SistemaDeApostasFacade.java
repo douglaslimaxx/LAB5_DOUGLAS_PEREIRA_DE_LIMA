@@ -36,10 +36,10 @@ public class SistemaDeApostasFacade {
 	}
 	
 	/**
-	 * @see Sistema#exibirUmCenario(int)
+	 * @see Sistema#exibeUmCenario(int)
 	 */
 	public String exibirUmCenario(int numeracao) {
-		return this.sistema.exibirUmCenario(numeracao);
+		return this.sistema.exibeUmCenario(numeracao);
 	}
 
 	/**
@@ -71,17 +71,17 @@ public class SistemaDeApostasFacade {
 	}
 
 	/**
-	 * @see Sistema#exibirApostasDeUmCenario(int)
+	 * @see Sistema#exibeApostasDeUmCenario(int)
 	 */
 	public String exibeApostas(int cenario) {
-		return this.sistema.exibirApostasDeUmCenario(cenario);
+		return this.sistema.exibeApostasDeUmCenario(cenario);
 	}
 	
 	/**
-	 * @see Sistema#encerrarCenario(int, boolean)
+	 * @see Sistema#encerraCenario(int, boolean)
 	 */
 	public void fecharAposta(int cenario, boolean ocorreu) {
-		this.sistema.encerrarCenario(cenario, ocorreu);
+		this.sistema.encerraCenario(cenario, ocorreu);
 	}
 
 	/**
