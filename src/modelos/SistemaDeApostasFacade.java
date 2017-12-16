@@ -14,7 +14,7 @@ public class SistemaDeApostasFacade {
 	/**
 	 * Método que inicializa um sistema a partir de um valor do caixa
 	 * inicial e um valor de taxa.
-	 * @param caixa itn que é o valor do caixa inicial do sistema
+	 * @param caixa int que é o valor do caixa inicial do sistema
 	 * @param taxa double que é a taxa utilizada pelo sistema.
 	 */
 	public SistemaDeApostasFacade(int caixa, double taxa) {

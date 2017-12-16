@@ -1,6 +1,7 @@
 package modelos;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 /**
  * Representa um sistema de apostas que terá uma lista de cenários 
@@ -32,6 +33,12 @@ public class Sistema {
 	 * ao caixa.
 	 */
 	public Sistema(int caixa, double taxa) {
+		if (caixa <= 0) {
+			throw new NoSuchElementException("Erro na inicializacao: Caixa nao pode ser inferior a 0");
+		}
+		if (taxa <= 0) {
+			throw new NoSuchElementException("Erro na inicializacao: Taxa nao pode ser inferior a 0");
+		}
 		this.caixa = caixa;
 		this.taxa = taxa;
 		this.cenarios = new ArrayList<>();
@@ -86,6 +93,12 @@ public class Sistema {
 	 * relação ao cenário.
 	 */
 	public void adicionaAposta(int cenario, String apostador, int quantia, String previsao) {
+		if (cenario <= 0) {
+			throw new NoSuchElementException("Erro no cadastro de aposta: Cenario invalido");
+		}
+		if (cenario > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
 		this.cenarios.get(cenario).adicionaAposta(apostador, quantia, previsao);
 	}
 	

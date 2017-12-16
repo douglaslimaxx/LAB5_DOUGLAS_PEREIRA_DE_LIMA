@@ -34,11 +34,7 @@ public class Aposta {
 			throw new NullPointerException("Erro no cadastro de aposta:"
 					+ " Apostador nao pode ser vazio ou nulo");
 		}
-		if (quantia == 0) {
-			throw new NoSuchElementException("Erro no cadastro de aposta: "
-					+ "Valor nao pode ser menor ou igual a zero");
-		}
-		if (quantia < 0) {
+		if (quantia <= 0) {
 			throw new NoSuchElementException("Erro no cadastro de aposta: "
 					+ "Valor nao pode ser menor ou igual a zero");
 		}
