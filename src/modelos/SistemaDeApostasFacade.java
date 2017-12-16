@@ -77,7 +77,6 @@ public class SistemaDeApostasFacade {
 		return this.sistema.exibirApostasDeUmCenario(cenario);
 	}
 	
-
 	/**
 	 * @see Sistema#encerrarCenario(int, boolean)
 	 */

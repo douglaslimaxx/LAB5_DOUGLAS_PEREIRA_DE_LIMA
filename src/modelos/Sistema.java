@@ -163,6 +163,15 @@ public class Sistema {
 	 * true e se o cenário não ocorreu com o valor false.
 	 */
 	public void encerrarCenario(int cenario, boolean ocorreu) {
+		if (cenario <= 0) {
+			throw new NoSuchElementException("Erro ao fechar aposta: Cenario invalido");
+		}
+		if (cenario > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro ao fechar aposta: Cenario nao cadastrado");
+		}
+		if (this.cenarios.get(cenario).getFinalizado().equals("Finalizado")) {
+			throw new NoSuchElementException("Erro ao fechar aposta: Cenario ja esta fechado");
+		}
 		if (ocorreu == true) {
 			this.cenarios.get(cenario).setFinalizado("ocorreu");
 		} else {
@@ -171,17 +180,6 @@ public class Sistema {
 		this.adicionaDinheiroEmCaixa(cenario);
 		this.cenarios.get(cenario).setRateio(this.cenarios.get(cenario).getCaixaPerdedores() - 
 				this.cenarioParaCaixa(cenario));
-	}
-	
-	/**
-	 * Método retorna o valor derateio de um cenário, que será destinado
-	 * aos vencedores.
-	 * @param cenario int que é a numeração de qual cenário retornará
-	 * o valor de rateio
-	 * @return int que é o valor de rateio do cenário.
-	 */
-	public int retornaRateio(int cenario) {
-		return this.cenarios.get(cenario).getRateio();
 	}
 	
 	/**
@@ -202,7 +200,36 @@ public class Sistema {
 	 * sistema.
 	 */
 	public int cenarioParaCaixa(int cenario) {
+		if (cenario <= 0) {
+			throw new NoSuchElementException("Erro na consulta do caixa do cenario: Cenario invalido");
+		}
+		if (cenario > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro na consulta do caixa do cenario: Cenario nao cadastrado");
+		}
+		if (this.cenarios.get(cenario).getFinalizado().equals("Nao Finalizado")) {
+			throw new NoSuchElementException("Erro na consulta do caixa do cenario: Cenario ainda esta aberto");
+		}
 		return (int)(this.cenarios.get(cenario).getCaixaPerdedores() * this.taxa);
+	}
+
+	/**
+	 * Método retorna o valor derateio de um cenário, que será destinado
+	 * aos vencedores.
+	 * @param cenario int que é a numeração de qual cenário retornará
+	 * o valor de rateio
+	 * @return int que é o valor de rateio do cenário.
+	 */
+	public int retornaRateio(int cenario) {
+		if (cenario <= 0) {
+			throw new NoSuchElementException("Erro na consulta do total de rateio do cenario: Cenario invalido");
+		}
+		if (cenario > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro na consulta do total de rateio do cenario: Cenario nao cadastrado");
+		}
+		if (this.cenarios.get(cenario).getFinalizado().equals("Nao Finalizado")) {
+			throw new NoSuchElementException("Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
+		}
+		return this.cenarios.get(cenario).getRateio();
 	}
 	
 	/**

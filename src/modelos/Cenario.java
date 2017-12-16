@@ -42,7 +42,7 @@ public class Cenario {
 		this.numeracao = numeracao;
 		this.ocorreu = "";
 		this.apostas = new ArrayList<>();
-		this.finalizado = "Não Finalizado";
+		this.finalizado = "Nao Finalizado";
 	}
 	
 	/**
@@ -97,16 +97,12 @@ public class Cenario {
 	 * @param ocorreu String que afirma se o cenário ocorreu ou não.
 	 */
 	public void setFinalizado(String ocorreu) {
-		if (this.finalizado == "Finalizado") {
-			
+		this.finalizado = "Finalizado";
+		this.ocorreu = ocorreu;
+		if (ocorreu.equals("ocorreu")) {
+			this.definirCaixaPerdedores("VAI ACONTECER");
 		} else {
-			this.finalizado = "Finalizado";
-			this.ocorreu = ocorreu;
-			if (ocorreu.equals("ocorreu")) {
-				this.definirCaixaPerdedores("VAI ACONTECER");
-			} else {
-				this.definirCaixaPerdedores("N VAI ACONTECER");
-			}
+			this.definirCaixaPerdedores("N VAI ACONTECER");
 		}
 	}
 	
@@ -151,6 +147,16 @@ public class Cenario {
 	 */
 	public int getCaixaTotal() {
 		return this.caixaTotal;
+	}
+	
+	/**
+	 * Método retorna uma String que é a situação em relação ao 
+	 * encerramento das apostas do cenário, se ele foi finalizado ou não
+	 * @return String que é a representação da situação do cenário
+	 * em relação ao seu encerramento.
+	 */
+	public String getFinalizado() {
+		return this.finalizado;
 	}
 
 	/**
