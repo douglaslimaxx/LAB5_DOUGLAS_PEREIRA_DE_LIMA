@@ -69,13 +69,13 @@ public class Sistema {
 	 * @return String que é a representaçaõ do cenário.
 	 */
 	public String exibeUmCenario(int cenario) {
-		if (cenario <= 0) {
+		if ((cenario - 1) <= 0) {
 			throw new NoSuchElementException("Erro no consulta de cenario: Cenario invalido");
 		}
-		if (cenario > this.cenarios.size()) {
+		if ((cenario - 1) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro no consulta de cenario: Cenario nao cadastrado");
 		}
-		return this.cenarios.get(cenario).toString();
+		return this.cenarios.get(cenario - 1).toString();
 	}
 
 	/**
@@ -108,13 +108,13 @@ public class Sistema {
 	 *            cenário.
 	 */
 	public void adicionaAposta(int cenario, String apostador, int quantia, String previsao) {
-		if (cenario <= 0) {
+		if ((cenario - 1) <= 0) {
 			throw new NoSuchElementException("Erro no cadastro de aposta: Cenario invalido");
 		}
-		if (cenario > this.cenarios.size()) {
+		if ((cenario - 1) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro no cadastro de aposta: Cenario nao cadastrado");
 		}
-		this.cenarios.get(cenario).adicionaAposta(apostador, quantia, previsao);
+		this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao);
 	}
 
 	/**
@@ -126,13 +126,13 @@ public class Sistema {
 	 * @return int que é o valor total das apostas de um cenário.
 	 */
 	public int valorTotalDeApostas(int cenario) {
-		if (cenario <= 0) {
+		if ((cenario - 1) <= 0) {
 			throw new NoSuchElementException("Erro na consulta do valor total de apostas: Cenario invalido");
 		}
-		if (cenario > this.cenarios.size()) {
+		if ((cenario - 1) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta do valor total de apostas: Cenario nao cadastrado");
 		}
-		return this.cenarios.get(cenario).getCaixaTotal();
+		return this.cenarios.get(cenario - 1).getCaixaTotal();
 	}
 
 	/**
@@ -143,13 +143,13 @@ public class Sistema {
 	 * @return int que o número de apostas feitas no cenário.
 	 */
 	public int totalDeApostas(int cenario) {
-		if (cenario <= 0) {
+		if ((cenario - 1) <= 0) {
 			throw new NoSuchElementException("Erro na consulta do total de apostas: Cenario invalido");
 		}
-		if (cenario > this.cenarios.size()) {
+		if ((cenario - 1) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta do total de apostas: Cenario nao cadastrado");
 		}
-		return this.cenarios.get(cenario).getApostas().size();
+		return this.cenarios.get(cenario - 1).getApostas().size();
 	}
 
 	/**
@@ -162,13 +162,13 @@ public class Sistema {
 	 *         cenário.
 	 */
 	public String exibeApostasDeUmCenario(int cenario) {
-		if (cenario <= 0) {
+		if ((cenario - 1) <= 0) {
 			throw new NoSuchElementException("Erro ao exibir apostas do cenário: Cenario invalido");
 		}
-		if (cenario > this.cenarios.size()) {
+		if ((cenario - 1) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro ao exibir apostas do cenário: Cenario nao cadastrado");
 		}
-		return this.cenarios.get(cenario).exibeTodasApostas();
+		return this.cenarios.get(cenario - 1).exibeTodasApostas();
 	}
 
 	/**
@@ -185,23 +185,23 @@ public class Sistema {
 	 *            cenário não ocorreu com o valor false.
 	 */
 	public void encerraCenario(int cenario, boolean ocorreu) {
-		if (cenario <= 0) {
+		if ((cenario - 1) <= 0) {
 			throw new NoSuchElementException("Erro ao fechar aposta: Cenario invalido");
 		}
-		if (cenario > this.cenarios.size()) {
+		if ((cenario - 1) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro ao fechar aposta: Cenario nao cadastrado");
 		}
-		if (this.cenarios.get(cenario).getFinalizado().equals("Finalizado")) {
+		if (this.cenarios.get(cenario - 1).getFinalizado().equals("Finalizado")) {
 			throw new NoSuchElementException("Erro ao fechar aposta: Cenario ja esta fechado");
 		}
 		if (ocorreu == true) {
-			this.cenarios.get(cenario).setFinalizado("ocorreu");
+			this.cenarios.get(cenario - 1).setFinalizado("ocorreu");
 		} else {
-			this.cenarios.get(cenario).setFinalizado("n ocorreu");
+			this.cenarios.get(cenario - 1).setFinalizado("n ocorreu");
 		}
 		this.adicionaDinheiroEmCaixa(cenario);
-		this.cenarios.get(cenario).setRateio(
-				this.cenarios.get(cenario).getCaixaPerdedores() - this.calculaValorDeCenarioParaCaixa(cenario));
+		this.cenarios.get(cenario - 1).setRateio(
+				this.cenarios.get(cenario - 1).getCaixaPerdedores() - this.calculaValorDeCenarioParaCaixa(cenario));
 	}
 
 	/**
@@ -225,16 +225,16 @@ public class Sistema {
 	 * @return int que é o valor calculado a ser destinado ao caixa do sistema.
 	 */
 	public int calculaValorDeCenarioParaCaixa(int cenario) {
-		if (cenario <= 0) {
+		if ((cenario - 1) <= 0) {
 			throw new NoSuchElementException("Erro na consulta do caixa do cenario: Cenario invalido");
 		}
-		if (cenario > this.cenarios.size()) {
+		if ((cenario - 1) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta do caixa do cenario: Cenario nao cadastrado");
 		}
-		if (this.cenarios.get(cenario).getFinalizado().equals("Nao Finalizado")) {
+		if (this.cenarios.get(cenario - 1).getFinalizado().equals("Nao Finalizado")) {
 			throw new NoSuchElementException("Erro na consulta do caixa do cenario: Cenario ainda esta aberto");
 		}
-		return (int) (this.cenarios.get(cenario).getCaixaPerdedores() * this.taxa);
+		return (int) (this.cenarios.get(cenario - 1).getCaixaPerdedores() * this.taxa);
 	}
 
 	/**
@@ -246,17 +246,17 @@ public class Sistema {
 	 * @return int que é o valor de rateio do cenário.
 	 */
 	public int retornaRateio(int cenario) {
-		if (cenario <= 0) {
+		if ((cenario - 1) <= 0) {
 			throw new NoSuchElementException("Erro na consulta do total de rateio do cenario: Cenario invalido");
 		}
-		if (cenario > this.cenarios.size()) {
+		if ((cenario - 1) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta do total de rateio do cenario: Cenario nao cadastrado");
 		}
-		if (this.cenarios.get(cenario).getFinalizado().equals("Nao Finalizado")) {
+		if (this.cenarios.get(cenario - 1).getFinalizado().equals("Nao Finalizado")) {
 			throw new NoSuchElementException(
 					"Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
 		}
-		return this.cenarios.get(cenario).getRateio();
+		return this.cenarios.get(cenario - 1).getRateio();
 	}
 
 	/**
