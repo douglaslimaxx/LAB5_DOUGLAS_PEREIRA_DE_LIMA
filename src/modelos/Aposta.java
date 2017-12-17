@@ -27,27 +27,24 @@ public class Aposta {
 	 *            String que é previsão do cenário.
 	 */
 	public Aposta(String apostador, int quantia, String previsao) {
-		if (apostador.equals(null)) {
-			throw new NullPointerException("Erro no cadastro de aposta:" + " Apostador nao pode ser vazio ou nulo");
+		if (apostador == null) {
+			throw new NullPointerException("Erro no cadastro de aposta: Apostador nao pode ser vazio ou nulo");
 		}
 		if (apostador.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: " + "Apostador nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Apostador nao pode ser vazio ou nulo");
 		}
-		if (apostador.equals(null)) {
-			throw new NullPointerException("Erro no cadastro de aposta:" + " Apostador nao pode ser vazio ou nulo");
+		if (previsao == null) {
+			throw new NullPointerException("Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
+		}
+		if (previsao.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
 		}
 		if (quantia <= 0) {
 			throw new NoSuchElementException(
-					"Erro no cadastro de aposta: " + "Valor nao pode ser menor ou igual a zero");
+					"Erro no cadastro de aposta: Valor nao pode ser menor ou igual a zero");
 		}
-		if ((!previsao.equals("VAI ACONTECER")) || (!previsao.equals("N VAI ACONTECER"))) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: " + "Previsao invalida");
-		}
-		if (previsao.equals(null)) {
-			throw new NullPointerException("Erro no cadastro de aposta: " + "Previsao nao pode ser vazia ou nula");
-		}
-		if (previsao.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: " + "Previsao nao pode ser vazia ou nula");
+		if ((!previsao.equals("VAI ACONTECER")) && (!previsao.equals("N VAI ACONTECER"))) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao invalida");
 		}
 		this.apostador = apostador;
 		this.quantia = quantia;

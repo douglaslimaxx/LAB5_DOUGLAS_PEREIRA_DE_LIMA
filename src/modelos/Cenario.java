@@ -11,12 +11,12 @@ import java.util.ArrayList;
  * pode adicionar apostas, ser finalizado, exibir todas as suas apostas, definir
  * o rateio.
  * 
- * @author douglas
+ * @author Douglas Lima
  *
  */
 public class Cenario {
 
-	private String nome;
+	private String descricao;
 	private String ocorreu;
 	private String finalizado;
 	private ArrayList<Aposta> apostas;
@@ -34,14 +34,14 @@ public class Cenario {
 	 * @param numeracao
 	 *            int que é a numeração do cenário.
 	 */
-	public Cenario(String nome, int numeracao) {
-		if (nome.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
-		}
-		if (nome.equals(null)) {
+	public Cenario(String descricao, int numeracao) {
+		if (descricao == null) {
 			throw new NullPointerException("Erro no cadastro de cenario: Descricao nao pode ser nula");
 		}
-		this.nome = nome;
+		if (descricao.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
+		}
+		this.descricao = descricao;
 		this.numeracao = numeracao;
 		this.ocorreu = "";
 		this.apostas = new ArrayList<>();
@@ -163,6 +163,15 @@ public class Cenario {
 	public int getCaixaTotal() {
 		return this.caixaTotal;
 	}
+	
+	/**
+	 * Método retorna a descrição do cenário.
+	 * 
+	 * @return String que é a descrição do cenário
+	 */
+	public String getDescricao() {
+		return this.descricao;
+	}
 
 	/**
 	 * Método retorna uma String que é a situação em relação ao encerramento das
@@ -174,6 +183,15 @@ public class Cenario {
 	public String getFinalizado() {
 		return this.finalizado;
 	}
+	
+	/**
+	 * Método retorna uma String que é se a situação do cenário ocorreu ou não
+	 * 
+	 * @return String que é demonstra se a situação do cenário ocorreu ou não.
+	 */
+	public String getOcorreu() {
+		return this.ocorreu;
+	}
 
 	/**
 	 * Método que retorna uma representação textual do cenário. A representação está
@@ -184,6 +202,6 @@ public class Cenario {
 	 * @return String que é a representação textual de Cenário.
 	 */
 	public String toString() {
-		return (this.numeracao + " - " + this.nome + " - " + this.finalizado + "(" + this.ocorreu + ")");
+		return (this.numeracao + " - " + this.descricao + " - " + this.finalizado + "(" + this.ocorreu + ")");
 	}
 }
