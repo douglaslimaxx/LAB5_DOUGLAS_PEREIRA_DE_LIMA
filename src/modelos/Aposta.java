@@ -86,6 +86,7 @@ public class Aposta {
 	 * @return String que é auma representação textual da aposta.
 	 */
 	public String toString() {
-		return (this.apostador + " - R$" + (this.quantia / 100.0) + " - " + this.previsao);
+		String valorReais = String.format("%,.2f", this.quantia / 100.0);
+		return (this.apostador + " - R$" + valorReais + " - " + this.previsao);
 	}
 }
