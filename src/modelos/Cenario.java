@@ -45,7 +45,7 @@ public class Cenario {
 		this.numeracao = numeracao;
 		this.ocorreu = "";
 		this.apostas = new ArrayList<>();
-		this.finalizado = "Nao Finalizado";
+		this.finalizado = "Não Finalizado";
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class Cenario {
 	public String exibeTodasApostas() {
 		String saida = "";
 		for (int i = 0; i < this.apostas.size(); i++) {
-			saida += (this.apostas.get(i) + System.lineSeparator());
+			saida += (this.apostas.get(i).toString() + System.lineSeparator());
 		}
 		return saida;
 	}
@@ -202,6 +202,10 @@ public class Cenario {
 	 * @return String que é a representação textual de Cenário.
 	 */
 	public String toString() {
-		return (this.numeracao + " - " + this.descricao + " - " + this.finalizado + "(" + this.ocorreu + ")");
+		if (this.finalizado.equals("Nao Finalizado")) {
+			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado);
+		} else {
+			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado + "(" + this.ocorreu + ")");
+		}
 	}
 }
