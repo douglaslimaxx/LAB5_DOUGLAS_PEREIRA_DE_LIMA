@@ -265,6 +265,16 @@ public class Sistema {
 	 * @return int que é o valor do caixa do sistema até o momento.
 	 */
 	public int getCaixa() {
-		return caixa;
+		return this.caixa;
 	}
+	
+	/**
+	 * Método retorna o valor da taxa do sistema.
+	 * 
+	 * @return double que é o valor da taxa do sistema.
+	 */
+	public double getTaxa() {
+		return this.taxa;
+	}
+	
 }
