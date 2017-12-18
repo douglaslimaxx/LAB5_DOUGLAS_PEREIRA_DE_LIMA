@@ -65,4 +65,7 @@ public class SistemaTest {
 			assertEquals(tm.getMessage(), "Erro na inicializacao: Taxa nao pode ser inferior a 0");
 		}
 	}
+	
+	@Test
+	public void testeCadastraCenario
 }
