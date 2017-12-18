@@ -1,5 +1,7 @@
 package modelos;
 
+import easyaccept.EasyAccept;
+
 /**
  * Representa uma Facade que controla o controller Sistema.
  * 
@@ -99,4 +101,10 @@ public class SistemaDeApostasFacade {
 	public int getTotalRateioCenario(int cenario) {
 		return this.sistema.retornaRateio(cenario);
 	}
+	
+	public static void main(String[] args) {
+        args = new String[] {"SistemaDeApostasFacade", "acceptance_test/us1_test.txt", 
+        		"acceptance_test/us2_test.txt", "acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt"};
+        EasyAccept.main(args);
+    }
 }
