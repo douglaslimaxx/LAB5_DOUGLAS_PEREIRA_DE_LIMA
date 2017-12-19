@@ -351,6 +351,52 @@ public class SistemaTest {
 															+ "Douglas - R$500,00 - N VAI ACONTECER" + System.lineSeparator());
 	}
 	
+	@Test
+	public void testeEncerrarCenarioInvalidoIgualZero() {
+		try {
+			sistema.encerraCenario(0, false);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro ao fechar aposta: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeEncerrarCenarioInvalidoMenorZero() {
+		try {
+			sistema.encerraCenario(-2, false);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro ao fechar aposta: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeEncerrarCenarioNaoCadastrado() {
+		try {
+			sistema.encerraCenario(1, false);
+		} catch (NoSuchElementException cnc) {
+			assertEquals(cnc.getMessage(), "Erro ao fechar aposta: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeEncerrarCenarioJaFinalizada() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.encerraCenario(1, false);
+		try {
+			sistema.encerraCenario(1, false);
+		} catch (NoSuchElementException cf) {
+			assertEquals(cf.getMessage(), "Erro ao fechar aposta: Cenario ja esta fechado");
+		}
+	}
+	
+	@Test
+	public void testeEncerrarCenarioSetaComoFinalizado() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.encerraCenario(1, false);
+		String msg = "Após ser encerrado, o cenário 1 deve ter a variável finalizado == Finalizado";
+		assertEquals(msg, sistema.getCenarios().get(0).getFinalizado(), "Finalizado");
+	}
+	
 	
 	
 	
