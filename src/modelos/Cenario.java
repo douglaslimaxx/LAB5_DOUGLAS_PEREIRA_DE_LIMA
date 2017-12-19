@@ -45,7 +45,7 @@ public class Cenario {
 		this.numeracao = numeracao;
 		this.ocorreu = "";
 		this.apostas = new ArrayList<>();
-		this.finalizado = "Não Finalizado";
+		this.finalizado = "Nao finalizado";
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class Cenario {
 	 * @return String que é a representação textual de Cenário.
 	 */
 	public String toString() {
-		if (this.finalizado.equals("Nao Finalizado")) {
+		if (this.finalizado.equals("Nao finalizado")) {
 			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado);
 		} else {
 			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado + "(" + this.ocorreu + ")");

@@ -1,6 +1,5 @@
 package modelos;
 
-import easyaccept.EasyAccept;
 
 /**
  * Representa uma Facade que controla o controller Sistema.
@@ -22,43 +21,43 @@ public class Facade {
 	 *            double que é a taxa utilizada pelo sistema.
 	 * @return 
 	 */
-	public void iniciaSistema(int caixa, double taxa) {
+	public void inicializa(int caixa, double taxa) {
 		this.sistema = new Sistema(caixa, taxa);
 	}
 
 	/**
 	 * @see Sistema#getCaixa()
 	 */
-	public int recuperaValorCaixa() {
+	public int getCaixa() {
 		return this.sistema.getCaixa();
 	}
 
 	/**
 	 * @see Sistema#cadastraCenario(String)
 	 */
-	public int cadastraCenario(String descricao) {
+	public int cadastrarCenario(String descricao) {
 		return this.sistema.cadastraCenario(descricao);
 	}
 
 	/**
 	 * @see Sistema#exibeUmCenario(int)
 	 */
-	public String exibirUmCenario(int numeracao) {
+	public String exibirCenario(int numeracao) {
 		return this.sistema.exibeUmCenario(numeracao);
 	}
 
 	/**
 	 * @see Sistema#listaCenarios()
 	 */
-	public String exibirTodosCenarios() {
+	public String exibirCenarios() {
 		return this.sistema.listaCenarios();
 	}
 
 	/**
 	 * @see Sistema#adicionaAposta(int, String, int, String)
 	 */
-	public void cadastrarAposta(int cenario, String apostador, int quantia, String previsao) {
-		this.sistema.adicionaAposta(cenario, apostador, quantia, previsao);
+	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
+		this.sistema.adicionaAposta(cenario, apostador, valor, previsao);
 	}
 
 	/**
@@ -102,10 +101,4 @@ public class Facade {
 	public int getTotalRateioCenario(int cenario) {
 		return this.sistema.retornaRateio(cenario);
 	}
-	
-	public static void main(String[] args) {
-        args = new String[] {"SistemaDeApostasFacade", "acceptance_test/us1_test.txt", 
-        		"acceptance_test/us2_test.txt", "acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt"};
-        EasyAccept.main(args);
-    }
 }
