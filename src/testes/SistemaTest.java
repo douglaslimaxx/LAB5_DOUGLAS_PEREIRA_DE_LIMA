@@ -19,18 +19,6 @@ public class SistemaTest {
 	}
 
 	@Test
-	public void testeSistemaValorInicialIgualZero() {
-		try {
-			sistema = new Sistema(0, 0.001);
-			if (sistema.getCaixa() == 0) {
-				fail("Caixa inicial não pode iniciar com valor 0");
-			}
-		} catch (NoSuchElementException vz) {
-			assertEquals(vz.getMessage(), "Erro na inicializacao: Caixa nao pode ser inferior a 0");
-		}
-	}
-
-	@Test
 	public void testeSistemaValorInicialMenorZero() {
 		try {
 			sistema = new Sistema(-500, 0.001);
@@ -39,18 +27,6 @@ public class SistemaTest {
 			}
 		} catch (NoSuchElementException vm) {
 			assertEquals(vm.getMessage(), "Erro na inicializacao: Caixa nao pode ser inferior a 0");
-		}
-	}
-
-	@Test
-	public void testeSistemaTaxaIgualZero() {
-		try {
-			sistema = new Sistema(500, 0.00);
-			if (sistema.getTaxa() == 0.00) {
-				fail("Taxa do sistema não pode ter valor 0");
-			}
-		} catch (NoSuchElementException tz) {
-			assertEquals(tz.getMessage(), "Erro na inicializacao: Taxa nao pode ser inferior a 0");
 		}
 	}
 
@@ -102,7 +78,7 @@ public class SistemaTest {
 		try {
 			sistema.exibeUmCenario(0);
 		} catch (NoSuchElementException nz) {
-			assertEquals(nz.getMessage(), "Erro no consulta de cenario: Cenario invalido");
+			assertEquals(nz.getMessage(), "Erro na consulta de cenario: Cenario invalido");
 		}
 	}
 
@@ -111,7 +87,7 @@ public class SistemaTest {
 		try {
 			sistema.exibeUmCenario(-6);
 		} catch (NoSuchElementException nm) {
-			assertEquals(nm.getMessage(), "Erro no consulta de cenario: Cenario invalido");
+			assertEquals(nm.getMessage(), "Erro na consulta de cenario: Cenario invalido");
 		}
 	}
 
@@ -120,7 +96,7 @@ public class SistemaTest {
 		try {
 			sistema.exibeUmCenario(1);
 		} catch (NoSuchElementException nnc) {
-			assertEquals(nnc.getMessage(), "Erro no consulta de cenario: Cenario nao cadastrado");
+			assertEquals(nnc.getMessage(), "Erro na consulta de cenario: Cenario nao cadastrado");
 		}
 	}
 
@@ -132,7 +108,7 @@ public class SistemaTest {
 			sistema.cadastraCenario("Passar em P2");
 			sistema.exibeUmCenario(4);
 		} catch (NoSuchElementException nnc) {
-			assertEquals(nnc.getMessage(), "Erro no consulta de cenario: Cenario nao cadastrado");
+			assertEquals(nnc.getMessage(), "Erro na consulta de cenario: Cenario nao cadastrado");
 		}
 	}
 
@@ -142,7 +118,7 @@ public class SistemaTest {
 		sistema.cadastraCenario("Passar em Grafos");
 		sistema.cadastraCenario("Passar em P2");
 		String msg = "A representação textual de um Cenário deve ser da seguinte forma";
-		assertEquals(msg, sistema.exibeUmCenario(2), "2 - Passar em Grafos - Não Finalizado");
+		assertEquals(msg, sistema.exibeUmCenario(2), "2 - Passar em Grafos - Nao finalizado");
 	}
 
 

@@ -57,7 +57,7 @@ public class CenarioTest {
 	@Test
 	public void testeCenarioIniciaNaoFinalizado() {
 		String msg = "Cenário deve iniciar não finalizado";
-		assertEquals(msg, cenario.getFinalizado(), "Não Finalizado");		
+		assertEquals(msg, cenario.getFinalizado(), "Nao finalizado");		
 	}
 	
 
@@ -161,6 +161,6 @@ public class CenarioTest {
 	@Test
 	public void testeToStringNaoFinalizado() {
 		String msg = "Representação textual de um Cenário deve está da seguinte forma";
-		assertEquals(msg, cenario.toString(), "1 - Passar na prova de P2 - Não finalizado");
+		assertEquals(msg, cenario.toString(), "1 - Passar na prova de P2 - Nao finalizado");
 	}
 }
