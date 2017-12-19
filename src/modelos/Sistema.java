@@ -69,10 +69,10 @@ public class Sistema {
 	 * @return String que é a representaçaõ do cenário.
 	 */
 	public String exibeUmCenario(int cenario) {
-		if ((cenario - 1) <= 0) {
+		if ((cenario) <= 0) {
 			throw new NoSuchElementException("Erro no consulta de cenario: Cenario invalido");
 		}
-		if ((cenario - 1) > this.cenarios.size()) {
+		if ((cenario - 1) >= this.cenarios.size()) {
 			throw new NoSuchElementException("Erro no consulta de cenario: Cenario nao cadastrado");
 		}
 		return this.cenarios.get(cenario - 1).toString();
@@ -267,7 +267,7 @@ public class Sistema {
 	public int getCaixa() {
 		return this.caixa;
 	}
-	
+
 	/**
 	 * Método retorna o valor da taxa do sistema.
 	 * 
@@ -276,5 +276,14 @@ public class Sistema {
 	public double getTaxa() {
 		return this.taxa;
 	}
-	
+
+	/**
+	 * Método retorna a lista de objetos do tipo Cenario que estão em Sistema.
+	 * 
+	 * @return Arraylist<Cenario> que é a lista de cenários de um sistema.
+	 */
+	public ArrayList<Cenario> getCenarios() {
+		return cenarios;
+	}
+
 }

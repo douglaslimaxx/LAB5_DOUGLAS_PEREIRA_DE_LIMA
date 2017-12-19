@@ -8,7 +8,7 @@ import easyaccept.EasyAccept;
  * @author Douglas Lima
  *
  */
-public class SistemaDeApostasFacade {
+public class Facade {
 
 	private Sistema sistema;
 
@@ -20,8 +20,9 @@ public class SistemaDeApostasFacade {
 	 *            int que é o valor do caixa inicial do sistema
 	 * @param taxa
 	 *            double que é a taxa utilizada pelo sistema.
+	 * @return 
 	 */
-	public SistemaDeApostasFacade(int caixa, double taxa) {
+	public void iniciaSistema(int caixa, double taxa) {
 		this.sistema = new Sistema(caixa, taxa);
 	}
 
