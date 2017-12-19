@@ -397,6 +397,101 @@ public class SistemaTest {
 		assertEquals(msg, sistema.getCenarios().get(0).getFinalizado(), "Finalizado");
 	}
 	
+	@Test
+	public void testeCalculaValorCenarioParaCaixaCenarioInvalidoIgualZero() {
+		try {
+			sistema.calculaValorDeCenarioParaCaixa(0);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro na consulta do caixa do cenario: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeCalculaValorCenarioParaCaixaCenarioInvalidoMenorZero() {
+		try {
+			sistema.calculaValorDeCenarioParaCaixa(-2);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro na consulta do caixa do cenario: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeCalculaValorCenarioParaCaixaCenarioNaoCadastrado() {
+		try {
+			sistema.calculaValorDeCenarioParaCaixa(1);
+		} catch (NoSuchElementException cnc) {
+			assertEquals(cnc.getMessage(), "Erro na consulta do caixa do cenario: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeCalculaValorCenarioParaCaixaCenarioNaofinalizado() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.calculaValorDeCenarioParaCaixa(1);
+		} catch (NoSuchElementException cnf) {
+			assertEquals(cnf.getMessage(), "Erro na consulta do caixa do cenario: Cenario ainda esta aberto");
+		}
+	}
+
+	@Test
+	public void testeCalculaValorCenarioParaCaixaCorreto() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaAposta(1, "Marcella", 10000, "VAI ACONTECER");
+		sistema.adicionaAposta(1, "Douglas", 50000, "N VAI ACONTECER");
+		sistema.encerraCenario(1, false);
+		String msg = "O valor do cenário 1 que será destinado ao caixa do sistema deve ser 10";
+		assertEquals(msg, sistema.calculaValorDeCenarioParaCaixa(1), 10);
+	}
+	
+	
+	@Test
+	public void testeRetornaRateioCenarioInvalidoIgualZero() {
+		try {
+			sistema.retornaRateio(0);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro na consulta do total de rateio do cenario: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeRetornaRateioCenarioInvalidoMenorZero() {
+		try {
+			sistema.retornaRateio(0);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro na consulta do total de rateio do cenario: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeRetornaRateioCenarioNaoCadastrado() {
+		try {
+			sistema.retornaRateio(1);
+		} catch (NoSuchElementException cnc) {
+			assertEquals(cnc.getMessage(), "Erro na consulta do total de rateio do cenario: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeRetornaRateioCenarioNaoFinalizado() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.retornaRateio(1);
+		} catch (NoSuchElementException cnf) {
+			assertEquals(cnf.getMessage(), "Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
+		}
+	}
+
+	@Test
+	public void testeRetornaRateioCorreto() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaAposta(1, "Marcella", 10000, "VAI ACONTECER");
+		sistema.adicionaAposta(1, "Douglas", 50000, "N VAI ACONTECER");
+		sistema.encerraCenario(1, false);
+		String msg = "O valor de rateio do cenário 1 deve ser 9990";
+		assertEquals(msg, sistema.retornaRateio(1), 9990);
+	}
+	
 	
 	
 	
