@@ -199,5 +199,34 @@ public class SistemaTest {
 			assertEquals(pv.getMessage(), "Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
 		}
 	}
+	
+	@Test
+	public void testeCadastraApostaCenarioInvalido() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaAposta(0, "Douglas", 1000, "N VAI ACONTECER");
+		} catch (NoSuchElementException ci) {
+			assertEquals(ci.getMessage(), "Erro no cadastro de aposta: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeCadastraApostaCenarioNaoCadastrado() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaAposta(2, "Douglas", 1000, "N VAI ACONTECER");
+		} catch (NoSuchElementException cnc) {
+			assertEquals(cnc.getMessage(), "Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeCadastraApostaCorreta() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaAposta(1, "Douglas", 1000, "N VAI ACONTECER");
+		String msg = "O tamanho do Arraylist de objetos do tipo Aposta que está em "
+				+ "Cenario deve ter tamanho 1 após uma aposta ser cadastrada";
+		assertEquals(msg, sistema.getCenarios().get(0).getApostas().size(), 1);
+	}
 
 }

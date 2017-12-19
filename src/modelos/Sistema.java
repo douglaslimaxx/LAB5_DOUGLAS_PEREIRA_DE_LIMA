@@ -72,7 +72,7 @@ public class Sistema {
 		if ((cenario) <= 0) {
 			throw new NoSuchElementException("Erro na consulta de cenario: Cenario invalido");
 		}
-		if ((cenario - 1) >= this.cenarios.size()) {
+		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta de cenario: Cenario nao cadastrado");
 		}
 		return this.cenarios.get(cenario - 1).toString();
@@ -111,7 +111,7 @@ public class Sistema {
 		if ((cenario - 1) < 0) {
 			throw new NoSuchElementException("Erro no cadastro de aposta: Cenario invalido");
 		}
-		if ((cenario - 1) > this.cenarios.size()) {
+		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro no cadastro de aposta: Cenario nao cadastrado");
 		}
 		this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao);
@@ -129,7 +129,7 @@ public class Sistema {
 		if ((cenario - 1) < 0) {
 			throw new NoSuchElementException("Erro na consulta do valor total de apostas: Cenario invalido");
 		}
-		if ((cenario - 1) > this.cenarios.size()) {
+		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta do valor total de apostas: Cenario nao cadastrado");
 		}
 		return this.cenarios.get(cenario - 1).getCaixaTotal();
@@ -146,7 +146,7 @@ public class Sistema {
 		if ((cenario - 1) < 0) {
 			throw new NoSuchElementException("Erro na consulta do total de apostas: Cenario invalido");
 		}
-		if ((cenario - 1) > this.cenarios.size()) {
+		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta do total de apostas: Cenario nao cadastrado");
 		}
 		return this.cenarios.get(cenario - 1).getApostas().size();
@@ -165,7 +165,7 @@ public class Sistema {
 		if ((cenario - 1) < 0) {
 			throw new NoSuchElementException("Erro ao exibir apostas do cenário: Cenario invalido");
 		}
-		if ((cenario - 1) > this.cenarios.size()) {
+		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro ao exibir apostas do cenário: Cenario nao cadastrado");
 		}
 		return this.cenarios.get(cenario - 1).exibeTodasApostas();
@@ -188,7 +188,7 @@ public class Sistema {
 		if ((cenario - 1) < 0) {
 			throw new NoSuchElementException("Erro ao fechar aposta: Cenario invalido");
 		}
-		if ((cenario - 1) > this.cenarios.size()) {
+		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro ao fechar aposta: Cenario nao cadastrado");
 		}
 		if (this.cenarios.get(cenario - 1).getFinalizado().equals("Finalizado")) {
@@ -228,7 +228,7 @@ public class Sistema {
 		if ((cenario - 1) < 0) {
 			throw new NoSuchElementException("Erro na consulta do caixa do cenario: Cenario invalido");
 		}
-		if ((cenario - 1) > this.cenarios.size()) {
+		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta do caixa do cenario: Cenario nao cadastrado");
 		}
 		if (this.cenarios.get(cenario - 1).getFinalizado().equals("Nao finalizado")) {
@@ -249,7 +249,7 @@ public class Sistema {
 		if ((cenario - 1) < 0) {
 			throw new NoSuchElementException("Erro na consulta do total de rateio do cenario: Cenario invalido");
 		}
-		if ((cenario - 1) > this.cenarios.size()) {
+		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta do total de rateio do cenario: Cenario nao cadastrado");
 		}
 		if (this.cenarios.get(cenario - 1).getFinalizado().equals("Nao finalizado")) {
