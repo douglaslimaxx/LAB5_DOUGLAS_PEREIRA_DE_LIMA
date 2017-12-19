@@ -121,6 +121,83 @@ public class SistemaTest {
 		assertEquals(msg, sistema.exibeUmCenario(2), "2 - Passar em Grafos - Nao finalizado");
 	}
 
-
+	@Test
+	public void testeListaCenarios() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.encerraCenario(1, false);
+		sistema.cadastraCenario("Passar em Grafos");
+		String msg = "A Representação textual dos Cenários devem está da seguinte forma";
+		assertEquals(msg, sistema.listaCenarios(), "1 - Passar em Discreta - Finalizado(n ocorreu)" + System.lineSeparator()
+												+ "2 - Passar em Grafos - Nao finalizado" +System.lineSeparator());
+	}
+	@Test
+	public void testeCadastraApostaApostadorNulo() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaAposta(1, null, 1000, "VAI ACONTECER");
+		} catch (NullPointerException an) {
+			assertEquals(an.getMessage(), "Erro no cadastro de aposta: Apostador nao pode ser vazio ou nulo");
+		}
+	}
+	
+	@Test
+	public void testeCadastraApostaApostadorVazio() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaAposta(1, "   ", 1000, "VAI ACONTECER");
+		} catch (IllegalArgumentException av) {
+			assertEquals(av.getMessage(), "Erro no cadastro de aposta: Apostador nao pode ser vazio ou nulo");
+		}
+	}
+	
+	@Test
+	public void testeCadastraApostaQuantiaIgualZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaAposta(1, "Douglas", 0, "VAI ACONTECER");
+		} catch (NoSuchElementException qz) {
+			assertEquals(qz.getMessage(), "Erro no cadastro de aposta: Valor nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastraApostaQuantiaMenorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaAposta(1, "Douglas", -1000, "VAI ACONTECER");
+		} catch (NoSuchElementException qm) {
+			assertEquals(qm.getMessage(), "Erro no cadastro de aposta: Valor nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastraApostaPrevisaoIncorreta() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaAposta(1, "Douglas", 1000, "ACONTECER");
+		} catch (IllegalArgumentException pi) {
+			assertEquals(pi.getMessage(), "Erro no cadastro de aposta: Previsao invalida");
+		}
+	}
+	
+	@Test
+	public void testeCadastraApostaPrevisaoNula() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaAposta(1, "Douglas", 1000, null);
+		} catch (NullPointerException pn) {
+			assertEquals(pn.getMessage(), "Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
+		}
+	}
+	
+	@Test
+	public void testeCadastraApostaPrevisaoVazia() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaAposta(1, "Douglas", 1000, "   ");
+		} catch (IllegalArgumentException pv) {
+			assertEquals(pv.getMessage(), "Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
+		}
+	}
 
 }
