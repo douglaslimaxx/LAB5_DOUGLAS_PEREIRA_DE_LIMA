@@ -201,10 +201,20 @@ public class SistemaTest {
 	}
 	
 	@Test
-	public void testeCadastraApostaCenarioInvalido() {
+	public void testeCadastraApostaCenarioInvalidoIgualZero() {
 		sistema.cadastraCenario("Passar em Discreta");
 		try {
 			sistema.adicionaAposta(0, "Douglas", 1000, "N VAI ACONTECER");
+		} catch (NoSuchElementException ci) {
+			assertEquals(ci.getMessage(), "Erro no cadastro de aposta: Cenario invalido");
+		}
+	}
+
+	@Test
+	public void testeCadastraApostaCenarioInvalidoMenorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaAposta(-2, "Douglas", 1000, "N VAI ACONTECER");
 		} catch (NoSuchElementException ci) {
 			assertEquals(ci.getMessage(), "Erro no cadastro de aposta: Cenario invalido");
 		}
@@ -229,4 +239,120 @@ public class SistemaTest {
 		assertEquals(msg, sistema.getCenarios().get(0).getApostas().size(), 1);
 	}
 
+	@Test
+	public void testeValorTotalApostasCenarioInvalidoIgualZero() {
+		try {
+			sistema.valorTotalDeApostas(0);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro na consulta do valor total de apostas: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeValorTotalApostasCenarioInvalidoMenorZero() {
+		try {
+			sistema.valorTotalDeApostas(-2);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro na consulta do valor total de apostas: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeValorTotalApostasCenarioNaoCadastrado() {
+		try {
+			sistema.valorTotalDeApostas(1);
+		} catch (NoSuchElementException cnc) {
+			assertEquals(cnc.getMessage(), "Erro na consulta do valor total de apostas: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeValorTotalApostasCorreto() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaAposta(1, "Douglas", 10000, "N VAI ACONTECER");
+		sistema.adicionaAposta(1, "Douglas", 50000, "N VAI ACONTECER");
+		String msg = "O valor total da apostas no Cenario 1 devem ter o valor 60000";
+		assertEquals(msg, sistema.valorTotalDeApostas(1), 60000);
+	}
+	
+	@Test
+	public void testeTotalApostaCenarioInvalidoIgualZero() {
+		try {
+			sistema.totalDeApostas(0);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro na consulta do total de apostas: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeTotalApostaCenarioInvalidoMenorZero() {
+		try {
+			sistema.totalDeApostas(-3);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro na consulta do total de apostas: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeTotalApostaCenarioInvalidoNaoCadastrado() {
+		try {
+			sistema.totalDeApostas(1);
+		} catch (NoSuchElementException cnc) {
+			assertEquals(cnc.getMessage(), "Erro na consulta do total de apostas: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeTotalApostasCorreto() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaAposta(1, "Douglas", 10000, "N VAI ACONTECER");
+		sistema.adicionaAposta(1, "Douglas", 50000, "N VAI ACONTECER");
+		sistema.adicionaAposta(1, "Douglas", 40000, "N VAI ACONTECER");
+		sistema.adicionaAposta(1, "Douglas", 20000, "N VAI ACONTECER");
+		sistema.adicionaAposta(1, "Douglas", 90000, "N VAI ACONTECER");
+		String msg = "O total da apostas no Cenario 1 devem ser 5";
+		assertEquals(msg, sistema.totalDeApostas(1), 5);
+	}
+	
+	@Test
+	public void testeExibeApostaCenarioInvalidoIgualZero() {
+		try {
+			sistema.exibeApostasDeUmCenario(0);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro ao exibir apostas do cenário: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeExibeApostaCenarioInvalidoMenorZero() {
+		try {
+			sistema.exibeApostasDeUmCenario(-2);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro ao exibir apostas do cenário: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeExibeApostaCenarioNaoCadastrado() {
+		try {
+			sistema.exibeApostasDeUmCenario(1);
+		} catch (NoSuchElementException cnc) {
+			assertEquals(cnc.getMessage(), "Erro ao exibir apostas do cenário: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testEExibeApostaCenario() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaAposta(1, "Marcella", 10000, "VAI ACONTECER");
+		sistema.adicionaAposta(1, "Douglas", 50000, "N VAI ACONTECER");
+		String msg = "A representação textual das apostas de um cenário deve ser da seuinte forma";
+		assertEquals(msg, sistema.exibeApostasDeUmCenario(1), "Marcella - R$100,00 - VAI ACONTECER" + System.lineSeparator()
+															+ "Douglas - R$500,00 - N VAI ACONTECER" + System.lineSeparator());
+	}
+	
+	
+	
+	
+	
 }
