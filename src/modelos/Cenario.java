@@ -16,13 +16,13 @@ import java.util.ArrayList;
  */
 public class Cenario {
 
-	private String descricao;
-	private String ocorreu;
-	private String finalizado;
+	protected String descricao;
+	protected String ocorreu;
+	protected String finalizado;
 	private ArrayList<Aposta> apostas;
-	private int rateio;
+	protected int rateio;
 	private int caixaPerdedores;
-	private int numeracao;
+	protected int numeracao;
 	private int caixaTotal;
 
 	/**
