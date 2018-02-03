@@ -28,11 +28,7 @@ public class CenarioBonus extends Cenario{
 	 * @return String que é a representação textual de Cenário.
 	 */
 	public String toString() {
-		if (this.finalizado.equals("Nao finalizado")) {
-			return (this.numeracao + " - " + this.getDescricao() + " - " + this.finalizado + " - R$ " + this.bonus);
-		} else {
-			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado + "(" + this.ocorreu + ")"  + " - R$ " + this.bonus);
-		}
+		return (super.toString() + " - R$ " + this.bonus);
 	}
 
 }

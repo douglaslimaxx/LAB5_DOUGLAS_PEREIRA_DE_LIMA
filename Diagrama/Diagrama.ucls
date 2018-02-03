@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.2" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+<class-diagram version="1.2.1" icons="true" automaticImage="JPEG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
   router="FAN">  
   <class id="1" language="java" name="modelos.Cenario" project="LAB5_DOUGLAS_PEREIRA_DE_LIMA" 
     file="/LAB5_DOUGLAS_PEREIRA_DE_LIMA/src/modelos/Cenario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="957" y="378"/>    
+    <position height="-1" width="-1" x="616" y="400"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -13,7 +13,7 @@
   </class>  
   <class id="2" language="java" name="modelos.Aposta" project="LAB5_DOUGLAS_PEREIRA_DE_LIMA" 
     file="/LAB5_DOUGLAS_PEREIRA_DE_LIMA/src/modelos/Aposta.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1199" y="389"/>    
+    <position height="-1" width="-1" x="810" y="415"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -22,7 +22,7 @@
   </class>  
   <class id="3" language="java" name="modelos.Sistema" project="LAB5_DOUGLAS_PEREIRA_DE_LIMA" 
     file="/LAB5_DOUGLAS_PEREIRA_DE_LIMA/src/modelos/Sistema.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="690" y="364"/>    
+    <position height="-1" width="-1" x="386" y="385"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -31,7 +31,7 @@
   </class>  
   <class id="4" language="java" name="modelos.Facade" project="LAB5_DOUGLAS_PEREIRA_DE_LIMA" 
     file="/LAB5_DOUGLAS_PEREIRA_DE_LIMA/src/modelos/Facade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="425" y="360"/>    
+    <position height="-1" width="-1" x="129" y="356"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -40,51 +40,107 @@
   </class>  
   <class id="5" language="java" name="modelos.CenarioBonus" project="LAB5_DOUGLAS_PEREIRA_DE_LIMA" 
     file="/LAB5_DOUGLAS_PEREIRA_DE_LIMA/src/modelos/CenarioBonus.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="949" y="707"/>    
+    <position height="-1" width="-1" x="604" y="701"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="6">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="1"/>  
+  <class id="6" language="java" name="modelos.ApostaSegurada" project="LAB5_DOUGLAS_PEREIRA_DE_LIMA" 
+    file="/LAB5_DOUGLAS_PEREIRA_DE_LIMA/src/modelos/ApostaSegurada.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1077" y="414"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="modelos.Seguro" project="LAB5_DOUGLAS_PEREIRA_DE_LIMA" 
+    file="/LAB5_DOUGLAS_PEREIRA_DE_LIMA/src/modelos/Seguro.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1072" y="536"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="modelos.Taxa" project="LAB5_DOUGLAS_PEREIRA_DE_LIMA" 
+    file="/LAB5_DOUGLAS_PEREIRA_DE_LIMA/src/modelos/Taxa.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1204" y="675"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="modelos.Valor" project="LAB5_DOUGLAS_PEREIRA_DE_LIMA" 
+    file="/LAB5_DOUGLAS_PEREIRA_DE_LIMA/src/modelos/Valor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1020" y="682"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="10">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
   </generalization>  
-  <association id="7">    
+  <association id="11">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="8" name="sistema">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="12" name="sistema">        
+        <position height="0" width="0" x="-304" y="21"/>      
       </attribute>      
-      <multiplicity id="9" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-304" y="21"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="10">    
+  <association id="14">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="11" name="cenarios">        
-        <position height="0" width="0" x="337" y="-157"/>      
+      <attribute id="15" name="cenarios">        
+        <position height="0" width="0" x="-4" y="-135"/>      
       </attribute>      
-      <multiplicity id="12" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="337" y="-157"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-4" y="-135"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="13">    
+  <generalization id="17">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="18">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="19">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="14" name="apostas">        
-        <position height="0" width="0" x="137" y="-135"/>      
+      <attribute id="20" name="apostas">        
+        <position height="0" width="0" x="-252" y="-109"/>      
       </attribute>      
-      <multiplicity id="15" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="137" y="-135"/>      
+      <multiplicity id="21" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-252" y="-109"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <association id="23">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="24" name="tipo"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
