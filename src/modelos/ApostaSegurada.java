@@ -14,4 +14,7 @@ public class ApostaSegurada  extends Aposta{
 		this.tipo = new Taxa(taxa);
 	}
 
+	public void setTipo(Seguro tipo) {
+		this.tipo = tipo;
+	}
 }

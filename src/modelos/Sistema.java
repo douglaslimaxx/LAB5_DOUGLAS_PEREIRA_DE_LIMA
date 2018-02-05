@@ -60,6 +60,13 @@ public class Sistema {
 		this.cenarios.add(cenario);
 		return this.cenarios.size();
 	}
+	
+	public int cadastraCenario(String descricao, int bonus) {
+		Cenario cenario = new CenarioBonus(descricao, (this.cenarios.size() + 1), bonus);
+		this.cenarios.add(cenario);
+		return this.cenarios.size();
+	}
+	
 
 	/**
 	 * Método que exibe a representação textual de um determinado cenário.
@@ -116,6 +123,8 @@ public class Sistema {
 		}
 		this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao);
 	}
+	
+	public int adicionaAposta(int cenario, String apostador, int valor, String previsao, int valor, int custo)
 
 	/**
 	 * Método que retorna o valor total das apostas feitas até o momento em um

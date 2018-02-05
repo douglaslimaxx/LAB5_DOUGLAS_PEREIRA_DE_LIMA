@@ -38,6 +38,10 @@ public class Facade {
 	public int cadastrarCenario(String descricao) {
 		return this.sistema.cadastraCenario(descricao);
 	}
+	
+	public int cadastrarCenario(String descricao, int bonus) {
+		return this.sistema.cadastraCenario(descricao, bonus);
+	}
 
 	/**
 	 * @see Sistema#exibeUmCenario(int)
@@ -58,6 +62,9 @@ public class Facade {
 	 */
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
 		this.sistema.adicionaAposta(cenario, apostador, valor, previsao);
+	}
+	
+	public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valor, int custo) {
 	}
 
 	/**
