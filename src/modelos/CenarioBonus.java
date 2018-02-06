@@ -34,7 +34,8 @@ public class CenarioBonus extends Cenario{
 	 * @return String que é a representação textual de Cenário.
 	 */
 	public String toString() {
-		return (super.toString() + " - R$ " + this.bonus);
+		String valorReais = String.format("%,.2f", this.bonus / 100.0);
+		return (super.toString() + " - R$ " + valorReais);
 	}
 
 }
