@@ -64,8 +64,8 @@ public class Facade {
 		this.sistema.adicionaAposta(cenario, apostador, valor, previsao);
 	}
 	
-	public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valor, int custo) {
-	}
+	//public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valor, int custo) {
+	//}
 
 	/**
 	 * @see Sistema#valorTotalDeApostas(int)

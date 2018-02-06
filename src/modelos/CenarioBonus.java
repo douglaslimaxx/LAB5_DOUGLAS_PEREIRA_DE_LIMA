@@ -8,8 +8,8 @@ public class CenarioBonus extends Cenario{
 	
 	public CenarioBonus(String descricao, int numeracao, int bonus) {
 		super(descricao, numeracao);
-		if (bonus < 0) {
-			throw new NoSuchElementException("Erro na inicializacao: Bonus nao pode ser inferior a 0");
+		if (bonus <= 0) {
+			throw new NoSuchElementException("Erro no cadastro de cenario: Bonus invalido");
 		}
 		this.bonus = bonus;
 	}

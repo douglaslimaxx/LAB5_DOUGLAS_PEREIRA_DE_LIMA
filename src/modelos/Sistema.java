@@ -62,7 +62,8 @@ public class Sistema {
 	}
 	
 	public int cadastraCenario(String descricao, int bonus) {
-		Cenario cenario = new CenarioBonus(descricao, (this.cenarios.size() + 1), bonus);
+		Cenario cenario = new CenarioBonus(descricao, (this.cenarios.size() + 1), bonus); 
+		this.caixa -= bonus;
 		this.cenarios.add(cenario);
 		return this.cenarios.size();
 	}
@@ -124,7 +125,7 @@ public class Sistema {
 		this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao);
 	}
 	
-	public int adicionaAposta(int cenario, String apostador, int valor, String previsao, int valor, int custo)
+	//public int adicionaAposta(int cenario, String apostador, int valor, String previsao, int valor, int custo)
 
 	/**
 	 * Método que retorna o valor total das apostas feitas até o momento em um
