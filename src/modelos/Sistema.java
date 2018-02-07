@@ -125,6 +125,23 @@ public class Sistema {
 		this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao);
 	}
 	
+
+	public int cadastrarApostaSeguraValor(int cenario, String apostador, int quantia, String previsao, int valor, int custo) {
+		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, valor, custo);
+	}
+
+	public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int quantia, String previsao, double taxa, int custo) {
+		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, taxa, custo);
+	}
+
+	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
+		return this.cenarios.get(cenario - 1).getAposta(apostaAssegurada).mudarTipo();
+	}
+
+	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+		return this.cenarios.get(cenario - 1).getAposta(apostaAssegurada).mudarTipo();
+	}
+	
 	//public int adicionaAposta(int cenario, String apostador, int valor, String previsao, int valor, int custo)
 
 	/**
@@ -295,5 +312,7 @@ public class Sistema {
 	public ArrayList<Cenario> getCenarios() {
 		return cenarios;
 	}
+
+
 
 }

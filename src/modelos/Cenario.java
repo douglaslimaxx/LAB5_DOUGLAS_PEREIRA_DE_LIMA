@@ -65,6 +65,20 @@ public class Cenario {
 		this.apostas.add(aposta);
 		this.caixaTotal += quantia;
 	}
+	
+	public int adicionaAposta(String apostador, int quantia, String previsao, int valor, int custo) {
+		Aposta aposta = new ApostaSegurada(apostador, quantia, previsao, valor);
+		this.apostas.add(aposta);
+		this.caixaTotal += quantia;
+		return (this.apostas.size() - 1);
+	}
+
+	public int adicionaAposta(String apostador, int quantia, String previsao, double taxa, int custo) {
+		Aposta aposta = new ApostaSegurada(apostador, quantia, previsao, taxa);
+		this.apostas.add(aposta);
+		this.caixaTotal += quantia;
+		return (this.apostas.size() - 1);
+	}
 
 	/**
 	 * Método exibe uma representação textual de todas as apostas feitas nesse
@@ -208,4 +222,10 @@ public class Cenario {
 			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado + "(" + this.ocorreu + ")");
 		}
 	}
+
+	public Aposta getAposta(int apostaAssegurada) {
+		return this.apostas.get(apostaAssegurada);
+	}
+
+	
 }

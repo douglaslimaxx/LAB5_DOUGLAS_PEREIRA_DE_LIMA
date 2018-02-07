@@ -17,4 +17,9 @@ public class ApostaSegurada  extends Aposta{
 	public void setTipo(Seguro tipo) {
 		this.tipo = tipo;
 	}
+	
+	public int mudarTipo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

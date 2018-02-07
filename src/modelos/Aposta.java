@@ -89,4 +89,6 @@ public class Aposta {
 		String valorReais = String.format("%,.2f", this.quantia / 100.0);
 		return (this.apostador + " - R$" + valorReais + " - " + this.previsao);
 	}
+
+	
 }
