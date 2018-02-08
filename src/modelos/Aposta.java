@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 public class Aposta {
 
 	private String apostador;
-	private int quantia;
+	protected int quantia;
 	private String previsao;
 
 	/**

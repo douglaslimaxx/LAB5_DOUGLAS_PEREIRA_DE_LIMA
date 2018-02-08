@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 public class ApostaSegurada  extends Aposta{
 
 	private Seguro tipo;
+	private int valorAssegurada;
 	private int custo;
 	
 	public ApostaSegurada(String apostador, int quantia, String previsao, int valor, int custo) {
@@ -15,7 +16,7 @@ public class ApostaSegurada  extends Aposta{
 	
 	public ApostaSegurada(String apostador, int quantia, String previsao, double taxa, int custo) {
 		super(apostador, quantia, previsao);
-		this.tipo = new Taxa(taxa);
+		this.tipo = new Taxa(quantia, taxa);
 		this.custo = custo;
 	}
 
@@ -28,7 +29,7 @@ public class ApostaSegurada  extends Aposta{
 	}
 	
 	public void mudarTipo(double taxa) {
-		tipo = new Taxa(taxa);
+		tipo = new Taxa(quantia,  taxa);
 	}
 	
 	public int getCusto() {

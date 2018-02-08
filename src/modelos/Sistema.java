@@ -133,6 +133,7 @@ public class Sistema {
 		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por valor: Cenario nao cadastrado");
 		}
+		this.caixa += custo;
 		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, valor, custo);
 	}
 
@@ -143,6 +144,7 @@ public class Sistema {
 		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por taxa: Cenario nao cadastrado");
 		}
+		this.caixa += custo;
 		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, taxa, custo);
 	}
 
