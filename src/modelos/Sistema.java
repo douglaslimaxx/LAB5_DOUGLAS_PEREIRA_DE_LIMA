@@ -135,11 +135,13 @@ public class Sistema {
 	}
 
 	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
-		return this.cenarios.get(cenario - 1).getAposta(apostaAssegurada).mudarTipo();
+		this.cenarios.get(cenario - 1).getAposta(apostaAssegurada);
+		return 0;
 	}
 
 	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
-		return this.cenarios.get(cenario - 1).getAposta(apostaAssegurada).mudarTipo();
+		this.cenarios.get(cenario - 1).getAposta(apostaAssegurada);
+		return 0;
 	}
 	
 	//public int adicionaAposta(int cenario, String apostador, int valor, String previsao, int valor, int custo)

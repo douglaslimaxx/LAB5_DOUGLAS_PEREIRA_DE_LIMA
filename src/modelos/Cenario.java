@@ -67,14 +67,14 @@ public class Cenario {
 	}
 	
 	public int adicionaAposta(String apostador, int quantia, String previsao, int valor, int custo) {
-		Aposta aposta = new ApostaSegurada(apostador, quantia, previsao, valor);
+		Aposta aposta = new ApostaSegurada(apostador, quantia, previsao, valor, custo);
 		this.apostas.add(aposta);
 		this.caixaTotal += quantia;
 		return (this.apostas.size() - 1);
 	}
 
 	public int adicionaAposta(String apostador, int quantia, String previsao, double taxa, int custo) {
-		Aposta aposta = new ApostaSegurada(apostador, quantia, previsao, taxa);
+		Aposta aposta = new ApostaSegurada(apostador, quantia, previsao, taxa, custo);
 		this.apostas.add(aposta);
 		this.caixaTotal += quantia;
 		return (this.apostas.size() - 1);
