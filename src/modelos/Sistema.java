@@ -127,19 +127,43 @@ public class Sistema {
 	
 
 	public int cadastrarApostaSeguraValor(int cenario, String apostador, int quantia, String previsao, int valor, int custo) {
+		if ((cenario - 1) < 0) {
+			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por valor: Cenario invalido");
+		}
+		if ((cenario) > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por valor: Cenario nao cadastrado");
+		}
 		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, valor, custo);
 	}
 
 	public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int quantia, String previsao, double taxa, int custo) {
+		if ((cenario - 1) < 0) {
+			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
+		}
+		if ((cenario) > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por taxa: Cenario nao cadastrado");
+		}
 		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, taxa, custo);
 	}
 
 	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
+		if ((cenario - 1) < 0) {
+			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por valor: Cenario invalido");
+		}
+		if ((cenario) > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por valor: Cenario nao cadastrado");
+		}
 		this.cenarios.get(cenario - 1).getAposta(apostaAssegurada);
 		return 0;
 	}
 
 	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+		if ((cenario - 1) < 0) {
+			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
+		}
+		if ((cenario) > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por taxa: Cenario nao cadastrado");
+		}
 		this.cenarios.get(cenario - 1).getAposta(apostaAssegurada);
 		return 0;
 	}

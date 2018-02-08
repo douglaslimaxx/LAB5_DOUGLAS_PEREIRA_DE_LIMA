@@ -1,6 +1,7 @@
 package modelos;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 /**
  * Representa um cenário com descrição, uma lista de objetos do tipo Aposta,
@@ -67,6 +68,25 @@ public class Cenario {
 	}
 	
 	public int adicionaAposta(String apostador, int quantia, String previsao, int valor, int custo) {
+		if (apostador == null) {
+			throw new NullPointerException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+		}
+		if (apostador.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+		}
+		if (previsao == null) {
+			throw new NullPointerException("Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
+		}
+		if (previsao.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
+		}
+		if (quantia <= 0) {
+			throw new NoSuchElementException(
+					"Erro no cadastro de aposta assegurada por valor: Valor nao pode ser menor ou igual a zero");
+		}
+		if ((!previsao.equals("VAI ACONTECER")) && (!previsao.equals("N VAI ACONTECER"))) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao invalida");
+		}
 		Aposta aposta = new ApostaSegurada(apostador, quantia, previsao, valor, custo);
 		this.apostas.add(aposta);
 		this.caixaTotal += quantia;
@@ -74,6 +94,25 @@ public class Cenario {
 	}
 
 	public int adicionaAposta(String apostador, int quantia, String previsao, double taxa, int custo) {
+		if (apostador == null) {
+			throw new NullPointerException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+		}
+		if (apostador.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+		}
+		if (previsao == null) {
+			throw new NullPointerException("Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
+		}
+		if (previsao.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
+		}
+		if (quantia <= 0) {
+			throw new NoSuchElementException(
+					"Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
+		}
+		if ((!previsao.equals("VAI ACONTECER")) && (!previsao.equals("N VAI ACONTECER"))) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao invalida");
+		}
 		Aposta aposta = new ApostaSegurada(apostador, quantia, previsao, taxa, custo);
 		this.apostas.add(aposta);
 		this.caixaTotal += quantia;

@@ -1,5 +1,7 @@
 package modelos;
 
+import java.util.NoSuchElementException;
+
 public class ApostaSegurada  extends Aposta{
 
 	private Seguro tipo;
