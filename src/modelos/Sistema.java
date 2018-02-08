@@ -256,7 +256,8 @@ public class Sistema {
 		}
 		this.adicionaDinheiroEmCaixa(cenario);
 		this.cenarios.get(cenario - 1).setRateio(
-				this.cenarios.get(cenario - 1).getCaixaPerdedores() - this.calculaValorDeCenarioParaCaixa(cenario));
+		this.cenarios.get(cenario - 1).getCaixaPerdedores() - this.calculaValorDeCenarioParaCaixa(cenario));
+		this.caixa -= this.cenarios.get(cenario - 1).getSeguros();
 	}
 
 	/**

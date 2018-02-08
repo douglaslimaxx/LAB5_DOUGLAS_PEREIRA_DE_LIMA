@@ -25,6 +25,7 @@ public class Cenario {
 	private int caixaPerdedores;
 	private int numeracao;
 	private int caixaTotal;
+	private int seguros;
 
 	/**
 	 * Constrói um cenário a partir de um nome e de uma numeração. Inicializa outros
@@ -147,6 +148,10 @@ public class Cenario {
 
 			} else {
 				this.caixaPerdedores += a.getQuantia();
+				if (a instanceof ApostaSegurada){
+					ApostaSegurada apostaSegurada = (ApostaSegurada) a;
+					this.seguros += apostaSegurada.getValor();
+				}
 			}
 		}
 	}
@@ -244,6 +249,10 @@ public class Cenario {
 	 */
 	public String getOcorreu() {
 		return this.ocorreu;
+	}
+	
+	public int getSeguros() {
+		return this.seguros;
 	}
 
 	/**

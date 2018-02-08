@@ -35,4 +35,8 @@ public class ApostaSegurada  extends Aposta{
 	public int getCusto() {
 		return this.custo;
 	}
+	
+	public int getValor() {
+		return this.tipo.getValor();
+	}
 }
