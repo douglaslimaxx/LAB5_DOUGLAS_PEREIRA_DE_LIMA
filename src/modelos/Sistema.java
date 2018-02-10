@@ -134,7 +134,7 @@ public class Sistema {
 			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por valor: Cenario nao cadastrado");
 		}
 		this.caixa += custo;
-		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, valor, custo);
+		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, valor);
 	}
 
 	public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int quantia, String previsao, double taxa, int custo) {
@@ -145,7 +145,7 @@ public class Sistema {
 			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por taxa: Cenario nao cadastrado");
 		}
 		this.caixa += custo;
-		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, taxa, custo);
+		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, taxa);
 	}
 
 	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
@@ -155,8 +155,8 @@ public class Sistema {
 		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por valor: Cenario nao cadastrado");
 		}
-		this.cenarios.get(cenario - 1).getAposta(apostaAssegurada);
-		return 0;
+		this.cenarios.get(cenario - 1).getApostasAsseguradas().get(apostaAssegurada).mudarTipo(valor);
+		return apostaAssegurada;
 	}
 
 	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
@@ -166,8 +166,8 @@ public class Sistema {
 		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por taxa: Cenario nao cadastrado");
 		}
-		this.cenarios.get(cenario - 1).getAposta(apostaAssegurada);
-		return 0;
+		this.cenarios.get(cenario - 1).getApostasAsseguradas().get(apostaAssegurada).mudarTipo(taxa);
+		return apostaAssegurada;
 	}
 	
 	//public int adicionaAposta(int cenario, String apostador, int valor, String previsao, int valor, int custo)
@@ -204,7 +204,8 @@ public class Sistema {
 		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta do total de apostas: Cenario nao cadastrado");
 		}
-		return this.cenarios.get(cenario - 1).getApostas().size();
+		return (this.cenarios.get(cenario - 1).getApostas().size() +
+				this.cenarios.get(cenario - 1).getApostasAsseguradas().size());
 	}
 
 	/**

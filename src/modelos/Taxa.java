@@ -10,6 +10,7 @@ public class Taxa extends Seguro {
 	}
 	
 	public int getValor() {
-		return (int) (this.taxa * this.valor);
+		System.out.println((int) (this.taxa * this.valor));
+		return (int) Math.floor(this.taxa * this.valor);
 	}
 }

@@ -1,6 +1,7 @@
 package modelos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -20,7 +21,8 @@ public class Cenario {
 	private String descricao;
 	private String ocorreu;
 	private String finalizado;
-	private ArrayList<Aposta> apostas;
+	private List<Aposta> apostas;
+	private List<ApostaAssegurada> apostaAsseguradas;
 	protected int rateio;
 	private int caixaPerdedores;
 	private int numeracao;
@@ -47,6 +49,7 @@ public class Cenario {
 		this.numeracao = numeracao;
 		this.ocorreu = "";
 		this.apostas = new ArrayList<>();
+		this.apostaAsseguradas = new ArrayList<>();
 		this.finalizado = "Nao finalizado";
 	}
 
@@ -68,7 +71,7 @@ public class Cenario {
 		this.caixaTotal += quantia;
 	}
 	
-	public int adicionaAposta(String apostador, int quantia, String previsao, int valor, int custo) {
+	public int adicionaAposta(String apostador, int quantia, String previsao, int valor) {
 		if (apostador == null) {
 			throw new NullPointerException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
 		}
@@ -88,13 +91,13 @@ public class Cenario {
 		if ((!previsao.equals("VAI ACONTECER")) && (!previsao.equals("N VAI ACONTECER"))) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao invalida");
 		}
-		Aposta aposta = new ApostaSegurada(apostador, quantia, previsao, valor, custo);
-		this.apostas.add(aposta);
+		ApostaAssegurada aposta = new ApostaAssegurada(apostador, quantia, previsao, valor);
+		this.apostaAsseguradas.add(aposta);
 		this.caixaTotal += quantia;
-		return (this.apostas.size() - 1);
+		return (this.apostaAsseguradas.size() - 1);
 	}
 
-	public int adicionaAposta(String apostador, int quantia, String previsao, double taxa, int custo) {
+	public int adicionaAposta(String apostador, int quantia, String previsao, double taxa) {
 		if (apostador == null) {
 			throw new NullPointerException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
 		}
@@ -114,10 +117,10 @@ public class Cenario {
 		if ((!previsao.equals("VAI ACONTECER")) && (!previsao.equals("N VAI ACONTECER"))) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao invalida");
 		}
-		Aposta aposta = new ApostaSegurada(apostador, quantia, previsao, taxa, custo);
-		this.apostas.add(aposta);
+		ApostaAssegurada aposta = new ApostaAssegurada(apostador, quantia, previsao, taxa);
+		this.apostaAsseguradas.add(aposta);
 		this.caixaTotal += quantia;
-		return (this.apostas.size() - 1);
+		return (this.apostaAsseguradas.size() - 1);
 	}
 
 	/**
@@ -131,6 +134,9 @@ public class Cenario {
 		String saida = "";
 		for (int i = 0; i < this.apostas.size(); i++) {
 			saida += (this.apostas.get(i).toString() + System.lineSeparator());
+		}
+		for (int i = 0; i < this.apostaAsseguradas.size(); i++) {
+			saida += (this.apostaAsseguradas.get(i).toString() + System.lineSeparator());
 		}
 		return saida;
 	}
@@ -148,10 +154,14 @@ public class Cenario {
 
 			} else {
 				this.caixaPerdedores += a.getQuantia();
-				if (a instanceof ApostaSegurada){
-					ApostaSegurada apostaSegurada = (ApostaSegurada) a;
-					this.seguros += apostaSegurada.getValor();
-				}
+			}
+		}
+		for (ApostaAssegurada a : apostaAsseguradas) {
+			if (a.getPrevisao().equals(previsao)) {
+
+			} else {
+				this.caixaPerdedores += a.getQuantia();
+				this.seguros += a.getValor();
 			}
 		}
 	}
@@ -190,8 +200,12 @@ public class Cenario {
 	 * 
 	 * @return Um ArrayList de objetos do tipo Aposta.
 	 */
-	public ArrayList<Aposta> getApostas() {
+	public List<Aposta> getApostas() {
 		return apostas;
+	}
+	
+	public List<ApostaAssegurada> getApostasAsseguradas() {
+		return apostaAsseguradas;
 	}
 
 	/**
@@ -271,8 +285,8 @@ public class Cenario {
 		}
 	}
 
-	public Aposta getAposta(int apostaAssegurada) {
-		return this.apostas.get(apostaAssegurada);
+	public ApostaAssegurada getApostaAssegurada(int apostaAssegurada) {
+		return this.apostaAsseguradas.get(apostaAssegurada);
 	}
 
 	
