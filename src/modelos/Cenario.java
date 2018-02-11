@@ -71,6 +71,21 @@ public class Cenario {
 		this.caixaTotal += quantia;
 	}
 	
+	/**
+	 * Método que cria um objeto do tipo apostaAssegurada a partir dos parâmetros
+	 * e o adiciona no Arraylist de Apostas Asseguradas de cenário. Além disso ele
+	 * adiciona a quantia que foi apostada no valor total das apostas daquele cenário.
+	 * Essa aposta é assegurada por um valor fixo.
+	 * 
+	 * @param apostador
+	 *            String que é nome do apostador.
+	 * @param quantia
+	 *            inteiro que é a quantia a ser apostada.
+	 * @param previsao
+	 *            String que é a previsão apostada em relação ao cenário.
+	 * @param valor
+	 * @return
+	 */
 	public int adicionaAposta(String apostador, int quantia, String previsao, int valor) {
 		if (apostador == null) {
 			throw new NullPointerException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
