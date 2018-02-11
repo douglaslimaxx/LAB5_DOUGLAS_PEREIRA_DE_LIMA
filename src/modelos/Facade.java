@@ -39,6 +39,9 @@ public class Facade {
 		return this.sistema.cadastraCenario(descricao);
 	}
 	
+	/**
+	 * @see Sistema#cadastraCenario(String, int)
+	 */
 	public int cadastrarCenario(String descricao, int bonus) {
 		return this.sistema.cadastraCenario(descricao, bonus);
 	}
@@ -63,19 +66,30 @@ public class Facade {
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
 		this.sistema.adicionaAposta(cenario, apostador, valor, previsao);
 	}
-	
+	/**
+	 * @see Sistema#cadastrarApostaSeguraValor(int, String, int, String, int, int)
+	 */
     public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorSeguro, int custo) {
     	return this.sistema.cadastrarApostaSeguraValor(cenario, apostador, valor, previsao, valorSeguro, custo);
     }
     
+    /**
+     * @see Sistema#cadastrarApostaSeguraTaxa(int, String, int, String, double, int)
+     */
     public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
     	return this.sistema.cadastrarApostaSeguraTaxa(cenario, apostador, valor, previsao, taxa, custo);
     }
     
+    /**
+     * @see Sistema#alterarSeguroValor(int, int, int)
+     */
     public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
     	return  this.sistema.alterarSeguroValor(cenario, apostaAssegurada, valor);
     }
     
+    /**
+     * @see Sistema#alterarSeguroTaxa(int, int, double)
+     */
     public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
     	return this.sistema.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
     }
