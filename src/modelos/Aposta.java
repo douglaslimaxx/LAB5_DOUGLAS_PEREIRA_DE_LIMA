@@ -3,7 +3,7 @@ package modelos;
 import java.util.NoSuchElementException;
 
 /**
- * Representa um aposta que irá ter o nome de quem apostou, a quantia apostada e
+ * Representa um aposta que terá o nome de quem apostou, a quantia apostada e
  * a previsão do cenário onde a aposta está sendo feita
  * 
  * @author Douglas Lima
@@ -16,7 +16,7 @@ public class Aposta {
 	private String previsao;
 
 	/**
-	 * Constrói uma aposta a partir dos parâmetros apostados e previsao que são
+	 * Constrói uma aposta a partir dos parâmetros apostador e previsao que são
 	 * Strings e o parâmetro quantia que é um inteiro.
 	 * 
 	 * @param apostador
