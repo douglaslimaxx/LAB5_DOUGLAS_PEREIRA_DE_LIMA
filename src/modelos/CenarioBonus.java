@@ -6,6 +6,17 @@ public class CenarioBonus extends Cenario{
 	
 	private int bonus;
 	
+	/**
+	 * Constrói um cenário com bônus a partir de um nome, de uma numeração e o seu valor de bônus. Inicializa outros
+	 * atributos.
+	 * 
+	 * @param descricao
+	 *            String que é a descrição do cenário.
+	 * @param numeracao
+	 *            int que é a numeração do cenário.
+	 * @param bonus
+	 * 				int que é o valor do bônus desse cenário.
+	 */
 	public CenarioBonus(String descricao, int numeracao, int bonus) {
 		super(descricao, numeracao);
 		if (bonus <= 0) {
@@ -21,6 +32,7 @@ public class CenarioBonus extends Cenario{
 	 * @param valor
 	 *            inteiro que será o valor atribuído ao rateio.
 	 */
+	@Override
 	public void setRateio(int valor) {
 		rateio = valor + this.bonus;
 	}
@@ -33,6 +45,7 @@ public class CenarioBonus extends Cenario{
 	 * 
 	 * @return String que é a representação textual de Cenário.
 	 */
+	@Override
 	public String toString() {
 		String valorReais = String.format("%,.2f", this.bonus / 100.0);
 		return (super.toString() + " - R$ " + valorReais);

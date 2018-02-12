@@ -84,7 +84,10 @@ public class Cenario {
 	 * @param previsao
 	 *            String que é a previsão apostada em relação ao cenário.
 	 * @param valor
+	 * 				int que é o valor a ser assegurado.
 	 * @return
+	 * 				int que é o id da aposta feita, sendo o seu índice no array de 
+	 * 				apostas asseguradas.
 	 */
 	public int adicionaAposta(String apostador, int quantia, String previsao, int valor) {
 		if (apostador == null) {
@@ -112,6 +115,25 @@ public class Cenario {
 		return (this.apostaAsseguradas.size() - 1);
 	}
 
+	/**
+	 * Método que cria um objeto do tipo apostaAssegurada a partir dos parâmetros
+	 * e o adiciona no Arraylist de Apostas Asseguradas de cenário. Além disso ele
+	 * adiciona a quantia que foi apostada no valor total das apostas daquele cenário.
+	 * Essa aposta é assegurada por um valor fixo.
+	 * 
+	 * @param apostador
+	 *            String que é nome do apostador.
+	 * @param quantia
+	 *            inteiro que é a quantia a ser apostada.
+	 * @param previsao
+	 *            String que é a previsão apostada em relação ao cenário.
+	 * @param taxa
+	 * 				double que é a taxa a ser aplicada ao valor apostado para resultar
+	 * 				no valor assegurado.
+	 * @return
+	 * 				int que é o id da aposta feita, sendo o seu índice no array de 
+	 * 				apostas asseguradas.
+	 */
 	public int adicionaAposta(String apostador, int quantia, String previsao, double taxa) {
 		if (apostador == null) {
 			throw new NullPointerException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
@@ -158,7 +180,8 @@ public class Cenario {
 
 	/**
 	 * Método verifica quais apostas são perdedoras e soma a quantia apostada à
-	 * caixa dos perdedores.
+	 * caixa dos perdedores. E se a aposta perdedora for assegurada, o método
+	 * adiciona o valor assegurado ao atributo seguros.
 	 * 
 	 * @param previsao
 	 *            String que é a previsão de quem ganha.
@@ -280,6 +303,25 @@ public class Cenario {
 		return this.ocorreu;
 	}
 	
+	/**
+	 * Método que retorna um objeto do tipo Aposta Assegurada, atravéns do seu 
+	 * índice no arraylist de aposta assegurada.
+	 * 
+	 * @param apostaAssegurada 
+	 * 					int que é o índice da aposta assegurada no arraylist.
+	 * @return
+	 * 			ApostaAssegurada um objeto que é uma aposta assegurada.
+	 */
+	public ApostaAssegurada getApostaAssegurada(int apostaAssegurada) {
+		return this.apostaAsseguradas.get(apostaAssegurada);
+	}
+	
+	/**
+	 * Método que retorna o valor dos seguros de todas as apostas asseguradas perdedoras.
+	 * 
+	 * @return
+	 * 			int que é o valor de todos os seguros desse cenário.
+	 */
 	public int getSeguros() {
 		return this.seguros;
 	}
@@ -298,11 +340,5 @@ public class Cenario {
 		} else {
 			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado + "(" + this.ocorreu + ")");
 		}
-	}
-
-	public ApostaAssegurada getApostaAssegurada(int apostaAssegurada) {
-		return this.apostaAsseguradas.get(apostaAssegurada);
-	}
-
-	
+	}	
 }
