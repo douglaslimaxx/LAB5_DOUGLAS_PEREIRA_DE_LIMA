@@ -1,5 +1,7 @@
 package modelos;
 
+import java.util.NoSuchElementException;
+
 /**
  * Representa um aposta assegurada que terá o nome de quem apostou, a quantia apostada,
  * a previsão do cenário onde a aposta está sendo feita, e um valor ou uma taxa 
@@ -58,6 +60,10 @@ public class ApostaAssegurada  extends Aposta{
 	 * 				int que é o valor a ser assegurado.
 	 */
 	public void mudarTipo(int valor) {
+		if (valor <= 0) {
+			throw new NoSuchElementException(
+					"Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
+		}
 		tipoSeguro = new Valor(valor);
 	}
 	
@@ -69,6 +75,10 @@ public class ApostaAssegurada  extends Aposta{
 	 * 				no valor  a ser assegurado. 
 	 */
 	public void mudarTipo(double taxa) {
+		if (taxa <= 0) {
+			throw new NoSuchElementException(
+					"Erro no cadastro de aposta assegurada por taxa: Taxa nao pode ser menor ou igual a zero");
+		}
 		tipoSeguro = new Taxa(quantia,  taxa);
 	}
 	

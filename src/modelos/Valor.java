@@ -1,5 +1,7 @@
 package modelos;
 
+import java.util.NoSuchElementException;
+
 /**
  * Representa o tipo Valor de seguro de Aposta.
  * 
@@ -15,6 +17,10 @@ public class Valor extends Seguro{
 	 * @param valor int que é o valor assegurado.
 	 */
 	public Valor (int valor) {
+		if (valor <= 0) {
+			throw new NoSuchElementException(
+					"Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
+		}
 		this.valor = valor;
 	}
 	

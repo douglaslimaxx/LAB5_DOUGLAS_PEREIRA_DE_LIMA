@@ -109,6 +109,7 @@ public class Cenario {
 		if ((!previsao.equals("VAI ACONTECER")) && (!previsao.equals("N VAI ACONTECER"))) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao invalida");
 		}
+		
 		ApostaAssegurada aposta = new ApostaAssegurada(apostador, quantia, previsao, valor);
 		this.apostaAsseguradas.add(aposta);
 		this.caixaTotal += quantia;

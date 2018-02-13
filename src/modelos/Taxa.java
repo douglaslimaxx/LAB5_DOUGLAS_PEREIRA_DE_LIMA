@@ -1,5 +1,7 @@
 package modelos;
 
+import java.util.NoSuchElementException;
+
 /**
  * Representa o tipo Taxa de seguro de Aposta.
  * 
@@ -18,6 +20,10 @@ public class Taxa extends Seguro {
 	 * obter o valor do seguro
 	 */
 	public Taxa (int valor, double taxa) {
+		if (taxa <= 0) {
+			throw new NoSuchElementException(
+					"Erro no cadastro de aposta assegurada por taxa: Taxa nao pode ser menor ou igual a zero");
+		}
 		this.taxa = taxa;
 		this.valor = valor;
 	}
