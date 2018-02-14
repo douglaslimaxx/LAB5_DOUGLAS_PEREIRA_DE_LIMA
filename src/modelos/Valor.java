@@ -42,7 +42,7 @@ public class Valor extends Seguro {
 	 */
 	public String toString() {
 		String valorSaida = String.format("%,.2f", this.getValor());
-		return "ASSEGURADA (VALOR) - R$ " + valorSaida;
+		return " - ASSEGURADA (VALOR) - R$ " + valorSaida;
 	}
 
 }

@@ -17,6 +17,8 @@ public class SistemaTest {
 	public void setUp() {
 		sistema = new Sistema(10000, 0.001);
 	}
+	
+	//Teste Gerais do sistema
 
 	@Test
 	public void testeSistemaValorInicialMenorZero() {
@@ -41,6 +43,8 @@ public class SistemaTest {
 			assertEquals(tm.getMessage(), "Erro na inicializacao: Taxa nao pode ser inferior a 0");
 		}
 	}
+	
+	//Testes com cenário sem bônus
 
 	@Test
 	public void testeArrayListCenarioIniciaVazio() {
@@ -65,7 +69,55 @@ public class SistemaTest {
 			assertEquals(dv.getMessage(), "Erro no cadastro de cenario: Descricao nao pode ser vazia");
 		}
 	}
+	
+	
+	//Testes com cenário com bônus
+	
+	@Test
+	public void testeCadastraCenarioBonusDescricaoNula() {
+		try {
+			sistema.cadastraCenario(null, 50);
+		} catch (NullPointerException dn) {
+			assertEquals(dn.getMessage(), "Erro no cadastro de cenario: Descricao nao pode ser nula");
+		}
+	}
 
+	@Test
+	public void testeCadastraCenarioBonusDescricaoVazia() {
+		try {
+			sistema.cadastraCenario("    ", 50);
+		} catch (IllegalArgumentException dv) {
+			assertEquals(dv.getMessage(), "Erro no cadastro de cenario: Descricao nao pode ser vazia");
+		}
+	}
+	
+	@Test
+	public void testeCadastraCenarioBonusZero() {
+		try {
+			sistema.cadastraCenario("Passar em Discreta", 0);
+		} catch (NoSuchElementException bz) {
+			assertEquals(bz.getMessage(), "Erro no cadastro de cenario: Bonus invalido");
+		}
+	}
+	
+	@Test
+	public void testeCadastraCenarioBonusMenorZero() {
+		try {
+			sistema.cadastraCenario("Passar em Discreta", -60);
+		} catch (NoSuchElementException bmz) {
+			assertEquals(bmz.getMessage(), "Erro no cadastro de cenario: Bonus invalido");
+		}
+	}
+	
+	@Test
+	public void testeCaixaDiminuiComBonus() {
+		sistema.cadastraCenario("Aprender IA", 50);
+		String msg = "Caixa do sistema deve ter 9950";
+		assertEquals(msg, 9950, sistema.getCaixa());
+	}
+
+	//Testes gerais de cenário
+	
 	@Test
 	public void testeCadastraCenarioArraylistDeveAumentar() {
 		sistema.cadastraCenario("Passar em Discreta");
@@ -73,6 +125,7 @@ public class SistemaTest {
 		assertEquals(msg, sistema.getCenarios().size(), 1);
 	}
 
+	
 	@Test
 	public void testeExibirCenarioNumeracaoIgualZero() {
 		try {
@@ -131,6 +184,9 @@ public class SistemaTest {
 		assertEquals(msg, sistema.listaCenarios(), "1 - Passar em Discreta - Finalizado(n ocorreu)" + System.lineSeparator()
 												+ "2 - Passar em Grafos - Nao finalizado" +System.lineSeparator());
 	}
+	
+	//Testes com aposta não assegurada
+	
 	@Test
 	public void testeCadastraApostaApostadorNulo() {
 		sistema.cadastraCenario("Passar em Discreta");
@@ -240,7 +296,8 @@ public class SistemaTest {
 		assertEquals(msg, sistema.getCenarios().get(0).getApostas().size(), 1);
 	}
 
-
+	//Testes com aposta assegurada por taxa
+	
 	@Test
 	public void testeCadastrarApostaAsseguradaTaxaCenarioInvalido() {
 		try {
@@ -378,6 +435,7 @@ public class SistemaTest {
 		assertEquals(msg, sistema.getCenarios().get(0).getApostasAsseguradas().size(), 1);
 	}
 
+	//Testes com aposta assegurada por valor
 
 	@Test
 	public void testeCadastrarApostaAsseguradaValorCenarioInvalido() {
@@ -515,6 +573,8 @@ public class SistemaTest {
 				+ "Cenario deve ter tamanho 1 após uma aposta ser cadastrada";
 		assertEquals(msg, sistema.getCenarios().get(0).getApostasAsseguradas().size(), 1);
 	}
+	
+	//Teste gerais com apostas
 
 	@Test
 	public void testeValorTotalApostasCenarioInvalidoIgualZero() {
@@ -542,6 +602,8 @@ public class SistemaTest {
 			assertEquals(cnc.getMessage(), "Erro na consulta do valor total de apostas: Cenario nao cadastrado");
 		}
 	}
+	
+	//Testes para alterar tipo de seguro de uma aposta
 	
 	@Test
 	public void testeAlteraSeguroValorCenarioInvalido() {
@@ -622,6 +684,8 @@ public class SistemaTest {
 		String msg = "Valor assegurado da aposta deve ser 20";
 		assertEquals(msg, 20, sistema.getCenarios().get(0).getApostaAssegurada(0).getValor());		
 	}
+	
+	//Teste funcionamento geral do sistema
 	
 	@Test
 	public void testeSubtraindoValorSegurosDeCaixa() {
