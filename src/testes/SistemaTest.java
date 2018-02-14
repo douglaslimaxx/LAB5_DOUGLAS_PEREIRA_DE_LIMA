@@ -121,6 +121,7 @@ public class SistemaTest {
 		assertEquals(msg, sistema.exibeUmCenario(2), "2 - Passar em Grafos - Nao finalizado");
 	}
 
+	
 	@Test
 	public void testeListaCenarios() {
 		sistema.cadastraCenario("Passar em Discreta");
@@ -619,7 +620,16 @@ public class SistemaTest {
 		sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "N VAI ACONTECER", 200, 50);
 		sistema.alterarSeguroTaxa(1, 0, 0.02);
 		String msg = "Valor assegurado da aposta deve ser 20";
-		assertEquals(msg, sistema.getCenarios().get(0).getApostaAssegurada(0).getValor(), 20);		
+		assertEquals(msg, 20, sistema.getCenarios().get(0).getApostaAssegurada(0).getValor());		
+	}
+	
+	@Test
+	public void testeSubtraindoValorSegurosDeCaixa() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "N VAI ACONTECER", 200, 50);
+		sistema.encerraCenario(1, true);
+		String msg = "Deve ter 9850 no caixa do sistema";
+		assertEquals(msg, 9851, sistema.getCaixa());
 	}
 	
 	@Test
@@ -847,8 +857,4 @@ public class SistemaTest {
 		String msg = "O valor de rateio do cenário 1 deve ser 9990";
 		assertEquals(msg, sistema.retornaRateio(1), 9990);
 	}
-	
-	
-	
-	
 }

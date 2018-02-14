@@ -1,6 +1,5 @@
 package modelos;
 
-
 /**
  * Representa uma Facade que controla o controller Sistema.
  * 
@@ -19,7 +18,7 @@ public class Facade {
 	 *            int que é o valor do caixa inicial do sistema
 	 * @param taxa
 	 *            double que é a taxa utilizada pelo sistema.
-	 * @return 
+	 * @return
 	 */
 	public void inicializa(int caixa, double taxa) {
 		this.sistema = new Sistema(caixa, taxa);
@@ -38,7 +37,7 @@ public class Facade {
 	public int cadastrarCenario(String descricao) {
 		return this.sistema.cadastraCenario(descricao);
 	}
-	
+
 	/**
 	 * @see Sistema#cadastraCenario(String, int)
 	 */
@@ -66,33 +65,36 @@ public class Facade {
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
 		this.sistema.adicionaAposta(cenario, apostador, valor, previsao);
 	}
+
 	/**
 	 * @see Sistema#adicionaApostaSeguraValor(int, String, int, String, int, int)
 	 */
-    public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorSeguro, int custo) {
-    	return this.sistema.adicionaApostaSeguraValor(cenario, apostador, valor, previsao, valorSeguro, custo);
-    }
-    
-    /**
-     * @see Sistema#adicionaApostaSeguraTaxa(int, String, int, String, double, int)
-     */
-    public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
-    	return this.sistema.adicionaApostaSeguraTaxa(cenario, apostador, valor, previsao, taxa, custo);
-    }
-    
-    /**
-     * @see Sistema#alterarSeguroValor(int, int, int)
-     */
-    public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
-    	return  this.sistema.alterarSeguroValor(cenario, apostaAssegurada, valor);
-    }
-    
-    /**
-     * @see Sistema#alterarSeguroTaxa(int, int, double)
-     */
-    public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
-    	return this.sistema.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
-    }
+	public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorSeguro,
+			int custo) {
+		return this.sistema.adicionaApostaSeguraValor(cenario, apostador, valor, previsao, valorSeguro, custo);
+	}
+
+	/**
+	 * @see Sistema#adicionaApostaSeguraTaxa(int, String, int, String, double, int)
+	 */
+	public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa,
+			int custo) {
+		return this.sistema.adicionaApostaSeguraTaxa(cenario, apostador, valor, previsao, taxa, custo);
+	}
+
+	/**
+	 * @see Sistema#alterarSeguroValor(int, int, int)
+	 */
+	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
+		return this.sistema.alterarSeguroValor(cenario, apostaAssegurada, valor);
+	}
+
+	/**
+	 * @see Sistema#alterarSeguroTaxa(int, int, double)
+	 */
+	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+		return this.sistema.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
+	}
 
 	/**
 	 * @see Sistema#valorTotalDeApostas(int)

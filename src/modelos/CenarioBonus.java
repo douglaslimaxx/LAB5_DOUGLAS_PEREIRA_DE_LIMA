@@ -2,20 +2,20 @@ package modelos;
 
 import java.util.NoSuchElementException;
 
-public class CenarioBonus extends Cenario{
-	
+public class CenarioBonus extends Cenario {
+
 	private int bonus;
-	
+
 	/**
-	 * Constrói um cenário com bônus a partir de um nome, de uma numeração e o seu valor de bônus. Inicializa outros
-	 * atributos.
+	 * Constrói um cenário com bônus a partir de um nome, de uma numeração e o seu
+	 * valor de bônus. Inicializa outros atributos.
 	 * 
 	 * @param descricao
 	 *            String que é a descrição do cenário.
 	 * @param numeracao
 	 *            int que é a numeração do cenário.
 	 * @param bonus
-	 * 				int que é o valor do bônus desse cenário.
+	 *            int que é o valor do bônus desse cenário.
 	 */
 	public CenarioBonus(String descricao, int numeracao, int bonus) {
 		super(descricao, numeracao);
@@ -24,10 +24,10 @@ public class CenarioBonus extends Cenario{
 		}
 		this.bonus = bonus;
 	}
-	
+
 	/**
-	 * Método que muda o valor do atributo Rateio e adiciona o bonus determinado para
-	 * o cenário.
+	 * Método que muda o valor do atributo Rateio e adiciona o bonus determinado
+	 * para o cenário.
 	 * 
 	 * @param valor
 	 *            inteiro que será o valor atribuído ao rateio.
@@ -36,7 +36,7 @@ public class CenarioBonus extends Cenario{
 	public void setRateio(int valor) {
 		rateio = valor + this.bonus;
 	}
-	
+
 	/**
 	 * Método que retorna uma representação textual do cenário. A representação está
 	 * seguinta forma: (Numeração do cenário) - (descrição do cenário) - (situação

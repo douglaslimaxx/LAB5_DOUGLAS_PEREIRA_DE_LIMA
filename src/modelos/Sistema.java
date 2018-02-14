@@ -9,13 +9,14 @@ import java.util.NoSuchElementException;
  * usada para calcular o quanto do valor total das apostas perdedoras de um
  * cenário irá para o caixa do sistema. Nesse sistema é possível cadastrar
  * cenários, exibir uma representação textual de um cenário, listar todos os
- * cenários cadastrados, cadastrar uma aposta em um cenário, cadastrar uma aposta
- * assegurada por um valor ou por um taxa, mudar uma aposta assegurada por taxa para 
- * assegurada por valor e vice-versa, listas todas as apostas de um cenário, exibir 
- * o valor total das apostas de um cenário, exibir o número de apostas feitas em um 
- * cenário, encerrar um cenário, retornar o valor que será destinado aos vencedores 
- * que apostaram em alguma cenário, calcula o valor de um cenário destinado ao
- * sistema e adiciona esse valor ao caixa do sistema.
+ * cenários cadastrados, cadastrar uma aposta em um cenário, cadastrar uma
+ * aposta assegurada por um valor ou por um taxa, mudar uma aposta assegurada
+ * por taxa para assegurada por valor e vice-versa, listas todas as apostas de
+ * um cenário, exibir o valor total das apostas de um cenário, exibir o número
+ * de apostas feitas em um cenário, encerrar um cenário, retornar o valor que
+ * será destinado aos vencedores que apostaram em alguma cenário, calcula o
+ * valor de um cenário destinado ao sistema e adiciona esse valor ao caixa do
+ * sistema.
  * 
  * @author Douglas Lima
  *
@@ -61,26 +62,25 @@ public class Sistema {
 		this.cenarios.add(cenario);
 		return this.cenarios.size();
 	}
-	
+
 	/**
-	 * Método cadastra um cenário bônus ao sistema a partir dos paramêtros 
-	 * descricao e bonus, criando um objeto do tipo CenarioBonus e o adiciona
-	 * ao Arraylist de Cenarios em sistema. Ele ainda atribui uma numeração ao
-	 * cenário cadastrado e subtrai do caixa o valor do bonus.
+	 * Método cadastra um cenário bônus ao sistema a partir dos paramêtros descricao
+	 * e bonus, criando um objeto do tipo CenarioBonus e o adiciona ao Arraylist de
+	 * Cenarios em sistema. Ele ainda atribui uma numeração ao cenário cadastrado e
+	 * subtrai do caixa o valor do bonus.
 	 * 
 	 * @param descricao
-	 * 				String que será a descrição do cenário cadastrado.
+	 *            String que será a descrição do cenário cadastrado.
 	 * @param bonus
-	 * 				int valor do bonus a ser retirado do caixa do sistema;
+	 *            int valor do bonus a ser retirado do caixa do sistema;
 	 * @return int que é a numeração do cenário cadastrado.
 	 */
 	public int cadastraCenario(String descricao, int bonus) {
-		Cenario cenario = new CenarioBonus(descricao, (this.cenarios.size() + 1), bonus); 
+		Cenario cenario = new CenarioBonus(descricao, (this.cenarios.size() + 1), bonus);
 		this.caixa -= bonus;
 		this.cenarios.add(cenario);
 		return this.cenarios.size();
 	}
-	
 
 	/**
 	 * Método que exibe a representação textual de um determinado cenário.
@@ -137,12 +137,12 @@ public class Sistema {
 		}
 		this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao);
 	}
-	
+
 	/**
-	 * Método que adiciona uma aposta assegurada por valor a um cenário a partir 
-	 * dos paramêtros apostador, quantia, previsão e valor que serão paramêtros 
-	 * do construtor de Aposta; o paramêtro cenario é o numeração de qual cenário 
-	 * a aposta será adicionada; e o  paramêtro custo será adicionado ao caixa do 
+	 * Método que adiciona uma aposta assegurada por valor a um cenário a partir dos
+	 * paramêtros apostador, quantia, previsão e valor que serão paramêtros do
+	 * construtor de Aposta; o paramêtro cenario é o numeração de qual cenário a
+	 * aposta será adicionada; e o paramêtro custo será adicionado ao caixa do
 	 * sistema, pois é o valor que apostador paga para ter uma aposta assegurada.
 	 * 
 	 * @param cenario
@@ -155,13 +155,13 @@ public class Sistema {
 	 *            String que é a previsão aque aposta está fazendo em relação ao
 	 *            cenário.
 	 * @param valor
-	 * 				int que é o valor assegurado, que o apostador receberá se perder.
+	 *            int que é o valor assegurado, que o apostador receberá se perder.
 	 * @param custo
-	 * 				int que é o a pagar para fazer uma aposta assegurada.
-	 * @return
-	 * 				int o índice da aposta, que será o seu id.
+	 *            int que é o a pagar para fazer uma aposta assegurada.
+	 * @return int o índice da aposta, que será o seu id.
 	 */
-	public int adicionaApostaSeguraValor(int cenario, String apostador, int quantia, String previsao, int valor, int custo) {
+	public int adicionaApostaSeguraValor(int cenario, String apostador, int quantia, String previsao, int valor,
+			int custo) {
 		if ((cenario - 1) < 0) {
 			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por valor: Cenario invalido");
 		}
@@ -169,17 +169,18 @@ public class Sistema {
 			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por valor: Cenario nao cadastrado");
 		}
 		if (custo <= 0) {
-			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por valor: Custo nao pode ser menor ou igual a zero");
+			throw new NoSuchElementException(
+					"Erro no cadastro de aposta assegurada por valor: Custo nao pode ser menor ou igual a zero");
 		}
 		this.caixa += custo;
 		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, valor);
 	}
 
 	/**
-	 * Método que adiciona uma aposta assegurada por taxa a um cenário a partir 
-	 * dos paramêtros apostador, quantia, previsão e taxa que serão paramêtros 
-	 * do construtor de Aposta; o paramêtro cenario é o numeração de qual cenário 
-	 * a aposta será adicionada; e o  paramêtro custo será adicionado ao caixa do 
+	 * Método que adiciona uma aposta assegurada por taxa a um cenário a partir dos
+	 * paramêtros apostador, quantia, previsão e taxa que serão paramêtros do
+	 * construtor de Aposta; o paramêtro cenario é o numeração de qual cenário a
+	 * aposta será adicionada; e o paramêtro custo será adicionado ao caixa do
 	 * sistema, pois é o valor que apostador paga para ter uma aposta assegurada.
 	 * 
 	 * @param cenario
@@ -192,14 +193,14 @@ public class Sistema {
 	 *            String que é a previsão aque aposta está fazendo em relação ao
 	 *            cenário.
 	 * @param taxa
-	 * 				double o valor que será multiplicado pelo valor apostado, para
-	 * 				resultar no valor que o apostador receberá se perder.
+	 *            double o valor que será multiplicado pelo valor apostado, para
+	 *            resultar no valor que o apostador receberá se perder.
 	 * @param custo
-	 * 				int que é o a pagar para fazer uma aposta assegurada.
-	 * @return
-	 * 				int o índice da aposta, que será o seu id.
+	 *            int que é o a pagar para fazer uma aposta assegurada.
+	 * @return int o índice da aposta, que será o seu id.
 	 */
-	public int adicionaApostaSeguraTaxa(int cenario, String apostador, int quantia, String previsao, double taxa, int custo) {
+	public int adicionaApostaSeguraTaxa(int cenario, String apostador, int quantia, String previsao, double taxa,
+			int custo) {
 		if ((cenario - 1) < 0) {
 			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
 		}
@@ -207,63 +208,68 @@ public class Sistema {
 			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por taxa: Cenario nao cadastrado");
 		}
 		if (custo <= 0) {
-			throw new NoSuchElementException("Erro no cadastro de aposta assegurada por taxa: Custo nao pode ser menor ou igual a zero");
+			throw new NoSuchElementException(
+					"Erro no cadastro de aposta assegurada por taxa: Custo nao pode ser menor ou igual a zero");
 		}
 		this.caixa += custo;
 		return this.cenarios.get(cenario - 1).adicionaAposta(apostador, quantia, previsao, taxa);
 	}
 
 	/**
-	 * Método que muda o modo como uma aposta será assegurada. Mudando de um valor 
+	 * Método que muda o modo como uma aposta será assegurada. Mudando de um valor
 	 * fixo para uma taxa que será aplicada no valor apostado.
 	 * 
 	 * @param cenario
-	 * 				int que é o id do cenário no qual a aposta a ser modificada foi feita.
+	 *            int que é o id do cenário no qual a aposta a ser modificada foi
+	 *            feita.
 	 * @param apostaAssegurada
-	 * 				int que é o id da aposta que será modificada
+	 *            int que é o id da aposta que será modificada
 	 * @param valor
-	 * 				int que é o valor a ser assegurado. 
-	 * @return
-	 * 				int o índice da aposta, que será o seu id.
+	 *            int que é o valor a ser assegurado.
+	 * @return int o índice da aposta, que será o seu id.
 	 */
 	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
 		if ((cenario - 1) < 0) {
-			throw new NoSuchElementException("Erro na mudança do seguro para valor de aposta assegurada: Cenario invalido");
+			throw new NoSuchElementException(
+					"Erro na mudança do seguro para valor de aposta assegurada: Cenario invalido");
 		}
 		if ((cenario) > this.cenarios.size()) {
-			throw new NoSuchElementException("Erro na mudança do seguro para valor de aposta assegurada: Cenario nao cadastrado");
+			throw new NoSuchElementException(
+					"Erro na mudança do seguro para valor de aposta assegurada: Cenario nao cadastrado");
 		}
 		this.cenarios.get(cenario - 1).getApostasAsseguradas().get(apostaAssegurada).mudarTipo(valor);
 		return apostaAssegurada;
 	}
-	
+
 	/**
-	 * Método que muda o modo como uma aposta será assegurada. Mudando de uma taxa 
+	 * Método que muda o modo como uma aposta será assegurada. Mudando de uma taxa
 	 * que será aplicada no valor apostado, para um valor fixo assegurado.
 	 * 
 	 * @param cenario
-	 * 				int que é o id do cenário no qual a aposta a ser modificada 
-	 * 				foi feita.
+	 *            int que é o id do cenário no qual a aposta a ser modificada foi
+	 *            feita.
 	 * @param apostaAssegurada
-	 * 				int que é o id da aposta que será modificada
+	 *            int que é o id da aposta que será modificada
 	 * @param taxa
-	 * 				double que é a taxa aplicado ao valor apostado, para obter o 
-	 * 				valor assegurado
-	 * @return
-	 * 				int o índice da aposta, que será o seu id.
+	 *            double que é a taxa aplicado ao valor apostado, para obter o valor
+	 *            assegurado
+	 * @return int o índice da aposta, que será o seu id.
 	 */
 	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
 		if ((cenario - 1) < 0) {
-			throw new NoSuchElementException("Erro na mudança do seguro para taxa de aposta assegurada: Cenario invalido");
+			throw new NoSuchElementException(
+					"Erro na mudança do seguro para taxa de aposta assegurada: Cenario invalido");
 		}
 		if ((cenario) > this.cenarios.size()) {
-			throw new NoSuchElementException("Erro na mudança do seguro para taxa de aposta assegurada: Cenario nao cadastrado");
+			throw new NoSuchElementException(
+					"Erro na mudança do seguro para taxa de aposta assegurada: Cenario nao cadastrado");
 		}
 		this.cenarios.get(cenario - 1).getApostasAsseguradas().get(apostaAssegurada).mudarTipo(taxa);
 		return apostaAssegurada;
 	}
-	
-	//public int adicionaAposta(int cenario, String apostador, int valor, String previsao, int valor, int custo)
+
+	// public int adicionaAposta(int cenario, String apostador, int valor, String
+	// previsao, int valor, int custo)
 
 	/**
 	 * Método que retorna o valor total das apostas feitas até o momento em um
@@ -297,8 +303,8 @@ public class Sistema {
 		if ((cenario) > this.cenarios.size()) {
 			throw new NoSuchElementException("Erro na consulta do total de apostas: Cenario nao cadastrado");
 		}
-		return (this.cenarios.get(cenario - 1).getApostas().size() +
-				this.cenarios.get(cenario - 1).getApostasAsseguradas().size());
+		return (this.cenarios.get(cenario - 1).getApostas().size()
+				+ this.cenarios.get(cenario - 1).getApostasAsseguradas().size());
 	}
 
 	/**
@@ -350,7 +356,7 @@ public class Sistema {
 		}
 		this.adicionaDinheiroEmCaixa(cenario);
 		this.cenarios.get(cenario - 1).setRateio(
-		this.cenarios.get(cenario - 1).getCaixaPerdedores() - this.calculaValorDeCenarioParaCaixa(cenario));
+				this.cenarios.get(cenario - 1).getCaixaPerdedores() - this.calculaValorDeCenarioParaCaixa(cenario));
 		this.caixa -= this.cenarios.get(cenario - 1).getSeguros();
 	}
 
@@ -435,7 +441,5 @@ public class Sistema {
 	public ArrayList<Cenario> getCenarios() {
 		return cenarios;
 	}
-
-
 
 }

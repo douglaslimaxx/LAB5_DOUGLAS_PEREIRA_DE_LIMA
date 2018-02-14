@@ -70,12 +70,12 @@ public class Cenario {
 		this.apostas.add(aposta);
 		this.caixaTotal += quantia;
 	}
-	
+
 	/**
-	 * Método que cria um objeto do tipo apostaAssegurada a partir dos parâmetros
-	 * e o adiciona no Arraylist de Apostas Asseguradas de cenário. Além disso ele
-	 * adiciona a quantia que foi apostada no valor total das apostas daquele cenário.
-	 * Essa aposta é assegurada por um valor fixo.
+	 * Método que cria um objeto do tipo apostaAssegurada a partir dos parâmetros e
+	 * o adiciona no Arraylist de Apostas Asseguradas de cenário. Além disso ele
+	 * adiciona a quantia que foi apostada no valor total das apostas daquele
+	 * cenário. Essa aposta é assegurada por um valor fixo.
 	 * 
 	 * @param apostador
 	 *            String que é nome do apostador.
@@ -84,23 +84,26 @@ public class Cenario {
 	 * @param previsao
 	 *            String que é a previsão apostada em relação ao cenário.
 	 * @param valor
-	 * 				int que é o valor a ser assegurado.
-	 * @return
-	 * 				int que é o id da aposta feita, sendo o seu índice no array de 
-	 * 				apostas asseguradas.
+	 *            int que é o valor a ser assegurado.
+	 * @return int que é o id da aposta feita, sendo o seu índice no array de
+	 *         apostas asseguradas.
 	 */
 	public int adicionaAposta(String apostador, int quantia, String previsao, int valor) {
 		if (apostador == null) {
-			throw new NullPointerException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+			throw new NullPointerException(
+					"Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
 		}
 		if (apostador.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
 		}
 		if (previsao == null) {
-			throw new NullPointerException("Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
+			throw new NullPointerException(
+					"Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
 		}
 		if (previsao.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
 		}
 		if (quantia <= 0) {
 			throw new NoSuchElementException(
@@ -109,7 +112,7 @@ public class Cenario {
 		if ((!previsao.equals("VAI ACONTECER")) && (!previsao.equals("N VAI ACONTECER"))) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao invalida");
 		}
-		
+
 		ApostaAssegurada aposta = new ApostaAssegurada(apostador, quantia, previsao, valor);
 		this.apostaAsseguradas.add(aposta);
 		this.caixaTotal += quantia;
@@ -117,10 +120,10 @@ public class Cenario {
 	}
 
 	/**
-	 * Método que cria um objeto do tipo apostaAssegurada a partir dos parâmetros
-	 * e o adiciona no Arraylist de Apostas Asseguradas de cenário. Além disso ele
-	 * adiciona a quantia que foi apostada no valor total das apostas daquele cenário.
-	 * Essa aposta é assegurada por um valor fixo.
+	 * Método que cria um objeto do tipo apostaAssegurada a partir dos parâmetros e
+	 * o adiciona no Arraylist de Apostas Asseguradas de cenário. Além disso ele
+	 * adiciona a quantia que foi apostada no valor total das apostas daquele
+	 * cenário. Essa aposta é assegurada por um valor fixo.
 	 * 
 	 * @param apostador
 	 *            String que é nome do apostador.
@@ -129,24 +132,27 @@ public class Cenario {
 	 * @param previsao
 	 *            String que é a previsão apostada em relação ao cenário.
 	 * @param taxa
-	 * 				double que é a taxa a ser aplicada ao valor apostado para resultar
-	 * 				no valor assegurado.
-	 * @return
-	 * 				int que é o id da aposta feita, sendo o seu índice no array de 
-	 * 				apostas asseguradas.
+	 *            double que é a taxa a ser aplicada ao valor apostado para resultar
+	 *            no valor assegurado.
+	 * @return int que é o id da aposta feita, sendo o seu índice no array de
+	 *         apostas asseguradas.
 	 */
 	public int adicionaAposta(String apostador, int quantia, String previsao, double taxa) {
 		if (apostador == null) {
-			throw new NullPointerException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+			throw new NullPointerException(
+					"Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
 		}
 		if (apostador.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
 		}
 		if (previsao == null) {
-			throw new NullPointerException("Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
+			throw new NullPointerException(
+					"Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
 		}
 		if (previsao.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
 		}
 		if (quantia <= 0) {
 			throw new NoSuchElementException(
@@ -242,7 +248,7 @@ public class Cenario {
 	public List<Aposta> getApostas() {
 		return apostas;
 	}
-	
+
 	public List<ApostaAssegurada> getApostasAsseguradas() {
 		return apostaAsseguradas;
 	}
@@ -274,7 +280,7 @@ public class Cenario {
 	public int getCaixaTotal() {
 		return this.caixaTotal;
 	}
-	
+
 	/**
 	 * Método retorna a descrição do cenário.
 	 * 
@@ -294,7 +300,7 @@ public class Cenario {
 	public String getFinalizado() {
 		return this.finalizado;
 	}
-	
+
 	/**
 	 * Método retorna uma String que é se a situação do cenário ocorreu ou não
 	 * 
@@ -303,25 +309,24 @@ public class Cenario {
 	public String getOcorreu() {
 		return this.ocorreu;
 	}
-	
+
 	/**
-	 * Método que retorna um objeto do tipo Aposta Assegurada, atravéns do seu 
+	 * Método que retorna um objeto do tipo Aposta Assegurada, atravéns do seu
 	 * índice no arraylist de aposta assegurada.
 	 * 
-	 * @param apostaAssegurada 
-	 * 					int que é o índice da aposta assegurada no arraylist.
-	 * @return
-	 * 			ApostaAssegurada um objeto que é uma aposta assegurada.
+	 * @param apostaAssegurada
+	 *            int que é o índice da aposta assegurada no arraylist.
+	 * @return ApostaAssegurada um objeto que é uma aposta assegurada.
 	 */
 	public ApostaAssegurada getApostaAssegurada(int apostaAssegurada) {
 		return this.apostaAsseguradas.get(apostaAssegurada);
 	}
-	
+
 	/**
-	 * Método que retorna o valor dos seguros de todas as apostas asseguradas perdedoras.
+	 * Método que retorna o valor dos seguros de todas as apostas asseguradas
+	 * perdedoras.
 	 * 
-	 * @return
-	 * 			int que é o valor de todos os seguros desse cenário.
+	 * @return int que é o valor de todos os seguros desse cenário.
 	 */
 	public int getSeguros() {
 		return this.seguros;
@@ -341,5 +346,5 @@ public class Cenario {
 		} else {
 			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado + "(" + this.ocorreu + ")");
 		}
-	}	
+	}
 }
