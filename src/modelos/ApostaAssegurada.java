@@ -62,7 +62,7 @@ public class ApostaAssegurada  extends Aposta{
 	public void mudarTipo(int valor) {
 		if (valor <= 0) {
 			throw new NoSuchElementException(
-					"Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
+					"Erro na mudança do seguro para valor de aposta assegurada: Valor nao pode ser menor ou igual a zero");
 		}
 		tipoSeguro = new Valor(valor);
 	}
@@ -77,7 +77,7 @@ public class ApostaAssegurada  extends Aposta{
 	public void mudarTipo(double taxa) {
 		if (taxa <= 0) {
 			throw new NoSuchElementException(
-					"Erro no cadastro de aposta assegurada por taxa: Taxa nao pode ser menor ou igual a zero");
+					"Erro na mudança do seguro para taxa de aposta assegurada: Taxa nao pode ser menor ou igual a zero");
 		}
 		tipoSeguro = new Taxa(quantia,  taxa);
 	}

@@ -19,7 +19,7 @@ public class Valor extends Seguro{
 	public Valor (int valor) {
 		if (valor <= 0) {
 			throw new NoSuchElementException(
-					"Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
+					"Erro no cadastro de aposta assegurada por valor: Valor assegurado nao pode ser menor ou igual a zero");
 		}
 		this.valor = valor;
 	}

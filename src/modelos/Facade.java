@@ -67,17 +67,17 @@ public class Facade {
 		this.sistema.adicionaAposta(cenario, apostador, valor, previsao);
 	}
 	/**
-	 * @see Sistema#cadastrarApostaSeguraValor(int, String, int, String, int, int)
+	 * @see Sistema#adicionaApostaSeguraValor(int, String, int, String, int, int)
 	 */
     public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorSeguro, int custo) {
-    	return this.sistema.cadastrarApostaSeguraValor(cenario, apostador, valor, previsao, valorSeguro, custo);
+    	return this.sistema.adicionaApostaSeguraValor(cenario, apostador, valor, previsao, valorSeguro, custo);
     }
     
     /**
-     * @see Sistema#cadastrarApostaSeguraTaxa(int, String, int, String, double, int)
+     * @see Sistema#adicionaApostaSeguraTaxa(int, String, int, String, double, int)
      */
     public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
-    	return this.sistema.cadastrarApostaSeguraTaxa(cenario, apostador, valor, previsao, taxa, custo);
+    	return this.sistema.adicionaApostaSeguraTaxa(cenario, apostador, valor, previsao, taxa, custo);
     }
     
     /**

@@ -239,6 +239,282 @@ public class SistemaTest {
 		assertEquals(msg, sistema.getCenarios().get(0).getApostas().size(), 1);
 	}
 
+
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaCenarioInvalido() {
+		try {
+			sistema.adicionaApostaSeguraTaxa(0, "Douglas", 1000, "VAI ACONTECER", 0.02, 50);
+		} catch (NoSuchElementException ci) {
+			assertEquals(ci.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaCenarioNaoCadastrado() {
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "VAI ACONTECER", 0.02, 50);
+		} catch (NoSuchElementException cnc) {
+			assertEquals(cnc.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaApostadorNulo() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, null, 1000, "VAI ACONTECER", 0.02, 50);
+		} catch (NullPointerException an) {
+			assertEquals(an.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaApostadorVazio() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "", 1000, "VAI ACONTECER", 0.02, 50);
+		} catch (IllegalArgumentException av) {
+			assertEquals(av.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaQuantiaZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "Douglas", 0, "VAI ACONTECER", 0.02, 50);
+		} catch (NoSuchElementException qz) {
+			assertEquals(qz.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaQuantiaMenorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "Douglas", -3, "VAI ACONTECER", 0.02, 50);
+		} catch (NoSuchElementException qmz) {
+			assertEquals(qmz.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaPrevisaoNula() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, null, 0.02, 50);
+		} catch (NullPointerException pn) {
+			assertEquals(pn.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaPrevisaoVazia() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "", 0.02, 50);
+		} catch (IllegalArgumentException pv) {
+			assertEquals(pv.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaPrevisaoInvalida() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "Queria muito", 0.02, 50);
+		} catch (IllegalArgumentException pi) {
+			assertEquals(pi.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Previsao invalida");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaSeguroZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "N VAI ACONTECER", 0.0, 50);
+		} catch (NoSuchElementException vz) {
+			assertEquals(vz.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Taxa nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaSeguroMenorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "N VAI ACONTECER", -0.02, 50);
+		} catch (NoSuchElementException vmz) {
+			assertEquals(vmz.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Taxa nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaCustoZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "N VAI ACONTECER", 0.02, 0);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Custo nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaTaxaCustoMenorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "N VAI ACONTECER", 0.02, -5);
+		} catch (NoSuchElementException cmz) {
+			assertEquals(cmz.getMessage(),  "Erro no cadastro de aposta assegurada por taxa: Custo nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastraApostaAsseguradaTaxaCorreta() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "N VAI ACONTECER", 0.02, 50);
+		String msg = "O tamanho do Arraylist de objetos do tipo ApostaAssegurada que está em "
+				+ "Cenario deve ter tamanho 1 após uma aposta ser cadastrada";
+		assertEquals(msg, sistema.getCenarios().get(0).getApostasAsseguradas().size(), 1);
+	}
+
+
+	@Test
+	public void testeCadastrarApostaAsseguradaValorCenarioInvalido() {
+		try {
+			sistema.adicionaApostaSeguraValor(0, "Douglas", 1000, "VAI ACONTECER", 200, 50);
+		} catch (NoSuchElementException ci) {
+			assertEquals(ci.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorCenarioNaoCadastrado() {
+		try {
+			sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "VAI ACONTECER", 200, 50);
+		} catch (NoSuchElementException cnc) {
+			assertEquals(cnc.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorApostadorNulo() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, null, 1000, "VAI ACONTECER", 200, 50);
+		} catch (NullPointerException an) {
+			assertEquals(an.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorApostadorVazio() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, "", 1000, "VAI ACONTECER", 200, 50);
+		} catch (IllegalArgumentException av) {
+			assertEquals(av.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorQuantiaZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, "Douglas", 0, "VAI ACONTECER", 200, 50);
+		} catch (NoSuchElementException qz) {
+			assertEquals(qz.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Valor nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorQuantiaMenorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, "Douglas", -3, "VAI ACONTECER", 200, 50);
+		} catch (NoSuchElementException qmz) {
+			assertEquals(qmz.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Valor nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorPrevisaoNula() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, null, 200, 50);
+		} catch (NullPointerException pn) {
+			assertEquals(pn.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorPrevisaoVazia() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "", 200, 50);
+		} catch (IllegalArgumentException pv) {
+			assertEquals(pv.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorPrevisaoInvalida() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "Queria muito", 200, 50);
+		} catch (IllegalArgumentException pi) {
+			assertEquals(pi.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Previsao invalida");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorSeguroZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "N VAI ACONTECER", 0, 50);
+		} catch (NoSuchElementException vz) {
+			assertEquals(vz.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Valor assegurado nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorSeguroMenorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "N VAI ACONTECER", -5, 50);
+		} catch (NoSuchElementException vmz) {
+			assertEquals(vmz.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Valor assegurado nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorCustoZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "N VAI ACONTECER", 200, 0);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Custo nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarApostaAsseguradaValorCustoMenorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		try {
+			sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "N VAI ACONTECER", 200, -5);
+		} catch (NoSuchElementException cmz) {
+			assertEquals(cmz.getMessage(),  "Erro no cadastro de aposta assegurada por valor: Custo nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeCadastraApostaAsseguradaValorCorreta() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "N VAI ACONTECER", 200, 50);
+		String msg = "O tamanho do Arraylist de objetos do tipo ApostaAssegurada que está em "
+				+ "Cenario deve ter tamanho 1 após uma aposta ser cadastrada";
+		assertEquals(msg, sistema.getCenarios().get(0).getApostasAsseguradas().size(), 1);
+	}
+
 	@Test
 	public void testeValorTotalApostasCenarioInvalidoIgualZero() {
 		try {
@@ -264,6 +540,86 @@ public class SistemaTest {
 		} catch (NoSuchElementException cnc) {
 			assertEquals(cnc.getMessage(), "Erro na consulta do valor total de apostas: Cenario nao cadastrado");
 		}
+	}
+	
+	@Test
+	public void testeAlteraSeguroValorCenarioInvalido() {
+		try {
+			sistema.alterarSeguroValor(0, 1, 200);
+		} catch (NoSuchElementException ci) {
+			assertEquals(ci.getMessage(), "Erro na mudança do seguro para valor de aposta assegurada: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeAlteraSeguroValorCenarioNaoCadastrado() {
+		try {
+			sistema.alterarSeguroValor(2, 1, 200);
+		} catch (NoSuchElementException ci) {
+			assertEquals(ci.getMessage(), "Erro na mudança do seguro para valor de aposta assegurada: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeAlteraSeguroValorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "N VAI ACONTECER", 0.02, 50);
+		try {
+			sistema.alterarSeguroValor(1, 0, 0);
+		} catch (NoSuchElementException vz) {
+			assertEquals(vz.getMessage(), "Erro na mudança do seguro para valor de aposta assegurada: Valor nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeAlteraSeguroValorMenorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "N VAI ACONTECER", 0.02, 50);
+		try {
+			sistema.alterarSeguroValor(1, 0, -5);
+		} catch (NoSuchElementException vmz) {
+			assertEquals(vmz.getMessage(), "Erro na mudança do seguro para valor de aposta assegurada: Valor nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeAlteraSeguroValorCorreto() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaApostaSeguraTaxa(1, "Douglas", 1000, "N VAI ACONTECER", 0.02, 50);
+		sistema.alterarSeguroValor(1, 0, 200);
+		String msg = "Valor assegurado da aposta deve ser 200";
+		assertEquals(msg, sistema.getCenarios().get(0).getApostaAssegurada(0).getValor(), 200);		
+	}
+	
+	@Test
+	public void testeAlteraSeguroTaxaZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "N VAI ACONTECER", 200, 50);
+		try {
+			sistema.alterarSeguroTaxa(1, 0, 0.0);
+		} catch (NoSuchElementException vmz) {
+			assertEquals(vmz.getMessage(), "Erro na mudança do seguro para taxa de aposta assegurada: Taxa nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeAlteraSeguroTaxaMenorZero() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "N VAI ACONTECER", 200, 50);
+		try {
+			sistema.alterarSeguroTaxa(1, 0, -0.02);
+		} catch (NoSuchElementException vmz) {
+			assertEquals(vmz.getMessage(), "Erro na mudança do seguro para taxa de aposta assegurada: Taxa nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	@Test
+	public void testeAlteraSeguroTaxaCorreto() {
+		sistema.cadastraCenario("Passar em Discreta");
+		sistema.adicionaApostaSeguraValor(1, "Douglas", 1000, "N VAI ACONTECER", 200, 50);
+		sistema.alterarSeguroTaxa(1, 0, 0.02);
+		String msg = "Valor assegurado da aposta deve ser 20";
+		assertEquals(msg, sistema.getCenarios().get(0).getApostaAssegurada(0).getValor(), 20);		
 	}
 	
 	@Test
@@ -491,7 +847,6 @@ public class SistemaTest {
 		String msg = "O valor de rateio do cenário 1 deve ser 9990";
 		assertEquals(msg, sistema.retornaRateio(1), 9990);
 	}
-	
 	
 	
 	
