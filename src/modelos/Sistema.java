@@ -1,6 +1,7 @@
 package modelos;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 /**
@@ -26,6 +27,7 @@ public class Sistema {
 	private int caixa;
 	private double taxa;
 	private ArrayList<Cenario> cenarios;
+	private Comparator comparador;
 
 	/**
 	 * Constrói um sistema a partir dos parâmetros caixa e taxa. E inicializa o
@@ -440,6 +442,23 @@ public class Sistema {
 	 */
 	public ArrayList<Cenario> getCenarios() {
 		return cenarios;
+	}
+	
+	public void alterarOrdem(String ordem) {
+		if (ordem.equals("Cadastro")) {
+			this.comparador = new IdComparador();
+		} else if (ordem.equals("Nome")) {
+			this.comparador = new NomeComparador();
+		} else if (ordem.equals("Apostas")) {
+			this.comparador = new NumeroApostasComparador();
+		} else {
+			
+		}
+	}
+	
+	public String exibirCenarioOrdenado(int cenario) {
+		this.cenarios.sort(comparador);
+		return this.cenarios.get(cenario).toString();
 	}
 
 }

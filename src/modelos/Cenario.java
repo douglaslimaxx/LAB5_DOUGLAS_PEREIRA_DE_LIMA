@@ -331,6 +331,10 @@ public class Cenario {
 	public int getSeguros() {
 		return this.seguros;
 	}
+	
+	public int getNumeracao() {
+		return this.numeracao;
+	}
 
 	/**
 	 * Método que retorna uma representação textual do cenário. A representação está
