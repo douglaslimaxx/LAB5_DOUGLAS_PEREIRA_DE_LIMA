@@ -475,8 +475,6 @@ public class Sistema {
 			throw new NoSuchElementException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
 		}
 		this.cenariosOrdenados.sort(comparador);
-		System.out.println("cenario nº - " + this.cenariosOrdenados.get(cenario-1).getNumeracao());
-		System.out.println(this.cenariosOrdenados.get(cenario-1).getApostas().size() + this.cenariosOrdenados.get(cenario-1).getApostasAsseguradas().size());
 		return this.cenariosOrdenados.get(cenario-1).toString();
 	}
 
