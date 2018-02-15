@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
  * @author Douglas Lima
  *
  */
-public class Cenario {
+public class Cenario implements Comparable{
 
 	private String descricao;
 	private String ocorreu;
@@ -348,7 +348,12 @@ public class Cenario {
 		if (this.finalizado.equals("Nao finalizado")) {
 			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado);
 		} else {
-			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado + "(" + this.ocorreu + ")");
+			return (this.numeracao + " - " + this.descricao + " - " + this.finalizado + " (" + this.ocorreu + ")");
 		}
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return 0;
 	}
 }

@@ -27,7 +27,8 @@ public class Sistema {
 	private int caixa;
 	private double taxa;
 	private ArrayList<Cenario> cenarios;
-	private Comparator comparador;
+	private Comparator<Cenario> comparador;
+	private ArrayList<Cenario> cenariosOrdenados;
 
 	/**
 	 * Constrói um sistema a partir dos parâmetros caixa e taxa. E inicializa o
@@ -48,6 +49,7 @@ public class Sistema {
 		this.caixa = caixa;
 		this.taxa = taxa;
 		this.cenarios = new ArrayList<>();
+		this.cenariosOrdenados = new ArrayList<>();
 	}
 
 	/**
@@ -62,6 +64,7 @@ public class Sistema {
 	public int cadastraCenario(String descricao) {
 		Cenario cenario = new Cenario(descricao, (this.cenarios.size() + 1));
 		this.cenarios.add(cenario);
+		this.cenariosOrdenados.add(cenario);
 		return this.cenarios.size();
 	}
 
@@ -81,6 +84,7 @@ public class Sistema {
 		Cenario cenario = new CenarioBonus(descricao, (this.cenarios.size() + 1), bonus);
 		this.caixa -= bonus;
 		this.cenarios.add(cenario);
+		this.cenariosOrdenados.add(cenario);
 		return this.cenarios.size();
 	}
 
@@ -445,20 +449,33 @@ public class Sistema {
 	}
 	
 	public void alterarOrdem(String ordem) {
-		if (ordem.equals("Cadastro")) {
+		if (ordem.equals("cadastro")) {
 			this.comparador = new IdComparador();
-		} else if (ordem.equals("Nome")) {
+		} else if (ordem.equals("nome")) {
 			this.comparador = new NomeComparador();
-		} else if (ordem.equals("Apostas")) {
+		} else if (ordem.equals("apostas")) {
 			this.comparador = new NumeroApostasComparador();
 		} else {
+			if (ordem.equals(null)) {
+				throw new NullPointerException("Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
+			} else if (ordem.trim().equals("")) {
+				throw new IllegalArgumentException("Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
+			} else {
+				throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+			}
 			
 		}
 	}
 	
 	public String exibirCenarioOrdenado(int cenario) {
-		this.cenarios.sort(comparador);
-		return this.cenarios.get(cenario).toString();
+		if ((cenario - 1) < 0) {
+			throw new NoSuchElementException("Erro na consulta de cenario ordenado: Cenario invalido");
+		}
+		if ((cenario) > this.cenarios.size()) {
+			throw new NoSuchElementException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
+		}
+		this.cenariosOrdenados.sort(comparador);
+		return this.cenariosOrdenados.get(cenario-1).toString();
 	}
 
 }

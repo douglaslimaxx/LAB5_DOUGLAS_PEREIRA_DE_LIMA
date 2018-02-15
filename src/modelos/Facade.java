@@ -137,4 +137,12 @@ public class Facade {
 	public int getTotalRateioCenario(int cenario) {
 		return this.sistema.retornaRateio(cenario);
 	}
+	
+	public void alterarOrdem(String ordem) {
+		this.sistema.alterarOrdem(ordem);
+	}
+	
+	public String exibirCenarioOrdenado(int cenario) {
+		return this.sistema.exibirCenarioOrdenado(cenario);
+	}
 }
