@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
  * @author Douglas Lima
  *
  */
-public class Cenario implements Comparable{
+public class Cenario implements Comparable<Cenario>{
 
 	private String descricao;
 	private String ocorreu;
@@ -352,8 +352,7 @@ public class Cenario implements Comparable{
 		}
 	}
 
-	@Override
-	public int compareTo(Object o) {
+	public int compareTo(Cenario o) {
 		return 0;
 	}
 }
