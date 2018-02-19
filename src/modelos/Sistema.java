@@ -438,6 +438,15 @@ public class Sistema {
 	public double getTaxa() {
 		return this.taxa;
 	}
+	
+	/**
+	 * Método retorna o objeto do tipo Comparator.
+	 * @return Comparator que é o paramêtro de comparação entre os cenários de 
+	 * sistema.
+	 */
+	public Comparator<Cenario> getComparador() {
+		return this.comparador;
+	}
 
 	/**
 	 * Método retorna a lista de objetos do tipo Cenario que estão em Sistema.
@@ -466,7 +475,7 @@ public class Sistema {
 				throw new NullPointerException("Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
 			} else if (ordem.trim().equals("")) {
 				throw new IllegalArgumentException("Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
-			} else {
+			} else  {
 				throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
 			}
 			

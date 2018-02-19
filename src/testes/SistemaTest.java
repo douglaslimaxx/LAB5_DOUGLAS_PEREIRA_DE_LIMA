@@ -8,6 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import modelos.Sistema;
+import modelos.IdComparador;
+import modelos.NomeComparador;
+import modelos.NumeroApostasComparador;
 
 public class SistemaTest {
 
@@ -181,7 +184,7 @@ public class SistemaTest {
 		sistema.encerraCenario(1, false);
 		sistema.cadastraCenario("Passar em Grafos");
 		String msg = "A Representação textual dos Cenários devem está da seguinte forma";
-		assertEquals(msg, sistema.listaCenarios(), "1 - Passar em Discreta - Finalizado(n ocorreu)" + System.lineSeparator()
+		assertEquals(msg, sistema.listaCenarios(), "1 - Passar em Discreta - Finalizado (n ocorreu)" + System.lineSeparator()
 												+ "2 - Passar em Grafos - Nao finalizado" +System.lineSeparator());
 	}
 	
@@ -921,4 +924,116 @@ public class SistemaTest {
 		String msg = "O valor de rateio do cenário 1 deve ser 9990";
 		assertEquals(msg, sistema.retornaRateio(1), 9990);
 	}
+	
+	//Testes sobre Ordenação 
+	
+	@Test
+	public void testeAlteraOrdemNula() {
+		try {
+			this.sistema.alterarOrdem(null);
+		} catch (NullPointerException on) {
+			assertEquals(on.getMessage(), "Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
+		}
+	}
+	
+	@Test
+	public void testeAlteraOrdemVazia() {
+		try {
+			this.sistema.alterarOrdem("  ");
+		} catch (IllegalArgumentException ov) {
+			assertEquals(ov.getMessage(), "Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
+		}
+	}
+	
+	@Test
+	public void testeAlteraOrdemInvalida() {
+		try {
+			this.sistema.alterarOrdem("Rateio");
+		} catch (IllegalArgumentException oi) {
+			assertEquals(oi.getMessage(), "Erro ao alterar ordem: Ordem invalida");
+		}
+	}
+	
+	@Test
+	public void testeAlteraOrdemCorretaCadastro() {
+		this.sistema.alterarOrdem("cadastro");
+		String msg = "O tipo do comparador deve ser IdComparador";
+		assertTrue(msg, this.sistema.getComparador() instanceof IdComparador);
+	}
+	
+	@Test
+	public void testeAlteraOrdemCorretaNome() {
+		this.sistema.alterarOrdem("nome");
+		String msg = "O tipo do comparador deve ser NomeComparador";
+		assertTrue(msg, this.sistema.getComparador() instanceof NomeComparador);
+	}
+	
+	@Test
+	public void testeAlteraOrdemCorretaNumeroApostas() {
+		this.sistema.alterarOrdem("apostas");
+		String msg = "O tipo do comparador deve ser NumeroApostasComparador";
+		assertTrue(msg, this.sistema.getComparador() instanceof NumeroApostasComparador);
+	}
+	
+	@Test
+	public void testeExibirCenarioOrdenadoCenarioZero() {
+		try {
+			this.sistema.exibirCenarioOrdenado(0);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro na consulta de cenario ordenado: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeExibirCenarioOrdenadoCenarioMenorZero() {
+		try {
+			this.sistema.exibirCenarioOrdenado(-9);
+		} catch (NoSuchElementException cmz) {
+			assertEquals(cmz.getMessage(), "Erro na consulta de cenario ordenado: Cenario invalido");
+		}
+	}
+	
+	@Test
+	public void testeExibirCenarioOrdenadoCenarioNaoCadastrado() {
+		try {
+			this.sistema.exibirCenarioOrdenado(1);
+		} catch (NoSuchElementException cz) {
+			assertEquals(cz.getMessage(), "Erro na consulta de cenario ordenado: Cenario nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeExibirCenarioOrdenadoCadastro() {
+		this.sistema.cadastraCenario("Bianca vai passar em administração");
+		this.sistema.cadastraCenario("Douglas vai ler It");
+		this.sistema.alterarOrdem("cadastro");
+		String msg = "Ordenando os cenários pela sequência do cadastro, temos o "
+				+ "cenário 'Bianca vai passar em administração' na posição 1";
+		assertEquals(msg, this.sistema.exibirCenarioOrdenado(1), "1 - Bianca vai passar em administração - Nao finalizado");
+	}
+	
+	@Test
+	public void testeExibirCenarioOrdenadoNome() {
+		this.sistema.cadastraCenario("Douglas vai ler It");
+		this.sistema.cadastraCenario("Bianca vai passar em administração");
+		this.sistema.alterarOrdem("nome");
+		String msg = "Ordenando os cenários pelo nome, temos o cenário 'Bianca "
+				+ "vai passar em administração' na posição 1";
+		assertEquals(msg, this.sistema.exibirCenarioOrdenado(1), "2 - Bianca vai passar em administração - Nao finalizado");
+	}
+	
+	@Test
+	public void testeExibirCenarioOrdenadoNumeroAposta() {
+		this.sistema.cadastraCenario("Douglas vai ler It");
+		this.sistema.cadastraCenario("Bianca vai passar em administração");
+		this.sistema.adicionaAposta(2, "Douglas", 10000, "VAI ACONTECER");
+		this.sistema.alterarOrdem("apostas");
+		String msg = "Ordenando os cenários pelo nome, temos o cenário 'Bianca "
+				+ "vai passar em administração' na posição 1";
+		assertEquals(msg, this.sistema.exibirCenarioOrdenado(1), "2 - Bianca vai passar em administração - Nao finalizado");
+	}
+	
+	
+	
+	
 }
