@@ -138,10 +138,18 @@ public class Facade {
 		return this.sistema.retornaRateio(cenario);
 	}
 	
+	/**
+	 * 
+	 * @see Sistema#alterarOrdem(String)
+	 */
 	public void alterarOrdem(String ordem) {
 		this.sistema.alterarOrdem(ordem);
 	}
 	
+	/**
+	 * 
+	 * @see Sistema#exibirCenarioOrdenado(int)
+	 */
 	public String exibirCenarioOrdenado(int cenario) {
 		return this.sistema.exibirCenarioOrdenado(cenario);
 	}

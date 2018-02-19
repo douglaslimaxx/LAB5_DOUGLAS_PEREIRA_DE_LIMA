@@ -448,6 +448,12 @@ public class Sistema {
 		return cenarios;
 	}
 	
+	/**
+	 * Método que altera o paramêtro de ordenação dos cenários no arraylist de 
+	 * objetos do tipo Cenário. A ordenação pode ser por ordem de cadastro, por 
+	 * nome ou por número de apostas de forma decrescente.
+	 * @param ordem String que dirá qual ordenação a ser utilizada.
+	 */
 	public void alterarOrdem(String ordem) {
 		if (ordem.equals("cadastro")) {
 			this.comparador = new IdComparador();
@@ -467,6 +473,12 @@ public class Sistema {
 		}
 	}
 	
+	/**
+	 * Método que exibe a representação textual de um cenário após a lista de 
+	 * cenários estar ordenada da forma escolhida.
+	 * @param cenario int que é o índice do cenário no arraylist após ordenado.
+	 * @return String que é a representação textual do cenário escolhido.
+	 */
 	public String exibirCenarioOrdenado(int cenario) {
 		if ((cenario - 1) < 0) {
 			throw new NoSuchElementException("Erro na consulta de cenario ordenado: Cenario invalido");
