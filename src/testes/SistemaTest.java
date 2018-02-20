@@ -927,13 +927,9 @@ public class SistemaTest {
 	
 	//Testes sobre Ordenação 
 	
-	@Test
+	@Test(expected = NullPointerException.class)
 	public void testeAlteraOrdemNula() {
-		try {
-			this.sistema.alterarOrdem(null);
-		} catch (NullPointerException on) {
-			assertEquals(on.getMessage(), "Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
-		}
+		sistema.alterarOrdem(null);
 	}
 	
 	@Test

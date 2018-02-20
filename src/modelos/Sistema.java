@@ -50,6 +50,7 @@ public class Sistema {
 		this.taxa = taxa;
 		this.cenarios = new ArrayList<>();
 		this.cenariosOrdenados = new ArrayList<>();
+		this.comparador = new IdComparador();
 	}
 
 	/**
@@ -471,15 +472,14 @@ public class Sistema {
 		} else if (ordem.equals("apostas")) {
 			this.comparador = new NumeroApostasComparador();
 		} else {
-			if (ordem.equals(null)) {
+			if (ordem == null) {
 				throw new NullPointerException("Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
 			} else if (ordem.trim().equals("")) {
 				throw new IllegalArgumentException("Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
 			} else  {
 				throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
-			}
-			
-		}
+			}	
+		} 
 	}
 	
 	/**

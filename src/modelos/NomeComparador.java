@@ -16,7 +16,12 @@ public class NomeComparador implements Comparator<Cenario>{
 	 */
 	@Override
 	public int compare(Cenario c1, Cenario c2) {
-		return c1.getDescricao().compareTo(c2.getDescricao());
+		if (c1.getDescricao().compareTo(c2.getDescricao()) == 0){
+			return c1.getNumeracao() - c2.getNumeracao();
+		}
+		else {
+			return c1.getDescricao().compareTo(c2.getDescricao());
+		}
 	}
 
 }

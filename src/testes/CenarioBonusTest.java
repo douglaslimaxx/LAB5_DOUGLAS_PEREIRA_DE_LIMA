@@ -47,7 +47,7 @@ public class CenarioBonusTest {
 	public void testeToStringFinalizado() {
 		cenario.setFinalizado("n ocorreu");
 		String msg = "Representação textual de um Cenário deve está da seguinte forma";
-		assertEquals(msg, cenario.toString(), "1 - Passar em Discreta - Finalizado(n ocorreu) - R$ 0,50");
+		assertEquals(msg, cenario.toString(), "1 - Passar em Discreta - Finalizado (n ocorreu) - R$ 0,50");
 	}
 	
 	@Test

@@ -360,7 +360,7 @@ public class CenarioTest {
 	public void testeToStringFinalizado() {
 		cenario.setFinalizado("n ocorreu");
 		String msg = "Representação textual de um Cenário deve está da seguinte forma";
-		assertEquals(msg, cenario.toString(), "1 - Passar na prova de P2 - Finalizado(n ocorreu)");
+		assertEquals(msg, cenario.toString(), "1 - Passar na prova de P2 - Finalizado (n ocorreu)");
 	}
 	
 	@Test
